@@ -400,6 +400,33 @@
             </li>
 
 
+            {{-- COURSE'S --}}
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i style="font-size: 18px;" class="fa-solid fa-address-card"></i> &nbsp;&nbsp;
+                <div data-i18n="Front Pages">Course's</div>
+              </a>
+              <ul class="menu-sub">
+                  
+                  <li class="menu-item">
+                    <a href="#" class="menu-link">
+                      <div data-i18n="Pricing">Add New Class</div>
+                    </a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="#" class="menu-link">
+                      <div data-i18n="Pricing">Add Course</div>
+                    </a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="{{ route('admin.list.course') }}" class="menu-link">
+                      <div data-i18n="Pricing">List Course</div>
+                    </a>
+                  </li>
+                  
+              </ul>
+            </li>
+
             
 
             
@@ -520,17 +547,12 @@
             <!-- Footer -->
             <footer class="content-footer footer bg-footer-theme">
               <div class="container-xxl d-flex flex-wrap justify-content-between align-items-center py-2 flex-md-row flex-column">
-                <div class="mb-md-0">
-                  <p class="m-0">
-                    UI Templates by
-                  <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
-                  </p>
-                </div>
+                
                 <div>
                   <p class="m-0">
                     Developed by
                     <a href="https://www.visionarytechbd.com" class="footer-link fw-bolder" target="_blank">
-                      Visionary Technology LTD.
+                      ...
                     </a>
                   </p>
                 </div>

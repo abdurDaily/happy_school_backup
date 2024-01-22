@@ -75,7 +75,7 @@ class AttendanceController extends Controller
     {
         $result = BatchNumber::all();
         $subjectId = Subject::all();
-        //dd($subjectId);
+
         return view('Admin.Attendance.present', compact('result', 'subjectId'));
     }
 
@@ -86,15 +86,15 @@ class AttendanceController extends Controller
         $batchId = BatchNumber::all();
         $query = Attendance::query();
 
-        if ($request->subject_id) {
-            $query->where('subject_id', $request->subject_id);
-        }
-        if ($request->date) {
-            $query->where('date', $request->date);
-        }
-        if ($request->batch_id) {
-            $query->where('batch_number_id', $request->batch_id);
-        }
+            if ($request->subject_id) {
+                $query->where('subject_id', $request->subject_id);
+            }
+            if ($request->date) {
+                $query->where('date', $request->date);
+            }
+            if ($request->batch_id) {
+                $query->where('batch_number_id', $request->batch_id);
+            }
 
         $students = AdmitStudent::where('batch_number', $request->batch_id)->get();
         $atteances = $query->with('attendanceStore')->first();

@@ -5,28 +5,28 @@
             <div class="col-10 mx-auto card shadow">
                 <div class="card">
                     <div class="card-header" >
-                        <h4>Admit Student</h4>
+                        <h4 style="margin: 0; padding:0;">Admit Student</h4>
                     </div>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('admit.student.database') }}" method="POST">
                         @csrf 
 
-                        <label for="std_name" class="mb-3">Insert Student Name</label>
-                        <input id="std_name" name="std_name" type="text" class="form-control" placeholder="---- Student Name ----">
+                        <label for="std_name" class="">Insert Student Name</label>
+                        <input id="std_name" name="std_name" type="text" class="form-control" placeholder="Student Name">
                         @error('std_name')
                            <strong class="text-danger">{{ $message }}</strong>
                         @enderror
 
                         <label for="std_id" class="mt-3">Insert Student Name</label>
-                        <input id="std_id" name="std_id" type="text" class="form-control" placeholder="---- Student ID ( T-191060 ) ----">
+                        <input id="std_id" name="std_id" type="text" class="form-control" placeholder="Student ID">
                         @error('std_id')
                            <strong class="text-danger">{{ $message }}</strong>
                         @enderror
 
-                        <label for="batch_no" class="mt-3">Select a Batch No</label>
+                        <label for="batch_no" class="mt-3">Select a Batch </label>
                         <select name="batch_no" id="batch_no" class="form-control">
-                            <option  value="" selected disabled>Select a batch</option>
+                            <option selected disabled>Select a batch</option>
                             @foreach ($batchNo as $data)
                                 <option value="{{ $data->id }}">{{ $data->batch_no }}</option>
                             @endforeach
@@ -47,7 +47,17 @@
 @endsection
 
 @push('additional_css')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <style>
+      .select2-search__field{
+        border: 0;
+        outline: 0;
+      }
+      .batch_no,.select2-selection__rendered {
+        border: 0px solid transparent;
+        outline: none;
+      }
+   </style>
 @endpush
 @push('additional_js')
 

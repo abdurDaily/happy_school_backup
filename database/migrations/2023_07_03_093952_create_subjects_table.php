@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
             $table->foreignId('semester_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->string('subject_name');
+            $table->string('subject_name')->unique();
             $table->string('author');
             $table->timestamps();
         });
