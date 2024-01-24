@@ -7,17 +7,18 @@
             <div class="col-lg-4">
                 <div class="row">
 
-
                     {{-- add subject --}}
                     <div class="col-lg-12 card shadow">
                         <div class="card-header">
-                            <h5 style="margin: 0; padding:0;">Add new course</h5>
+                            <h5 style="margin: 0; padding:0;">Edit Course</h5>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.store.course') }}" method="POST">
+                            <form action="{{ route('admin.update.course' , $editCourseData->id) }}" method="POST">
                                 @csrf
+                                @method('put')
+
                                 <label for="course_name" class="mb-0">course name</label>
-                                <input value="{{ old('course_name') }}" id="course_name" name="course_name" type="text" class="form-control"
+                                <input value="{{ $editCourseData->subject_name }}" id="course_name" name="course_name" type="text" class="form-control"
                                     placeholder="course name..">
                                 @error('course_name')
                                     <span class="text-danger">{{ $message }}</span> <br>
@@ -27,8 +28,9 @@
                                 <select name="semester_id" id="semester_id" class="form-control">
                                     <option value="" selected disabled>Slect a Class</option>
 
+                            
                                     @foreach ($semesterData as $semester)
-                                        <option  value="{{ $semester->id }}">{{ $semester->semester }}</option>
+                                        <option {{ $editCourseData->semester_id == $semester->id ? 'selected' : '' }} value="{{ $semester->id }}">{{ $semester->semester }}</option>
                                     @endforeach
                                 </select>
                                 @error('semester_id')
@@ -42,6 +44,7 @@
                     </div>
                 </div>
             </div>
+
 
 
             <div class="col-lg-8 table-responsive mt-5 mt-lg-0">
@@ -79,6 +82,9 @@
                     {{ $subjectData->links() }}
                 </div>
             </div>
+
+
+            
 
 
         </div>

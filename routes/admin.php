@@ -185,9 +185,11 @@ Route::middleware(['admin:admin'])->group(function (){
 
 /**__{--COURSE START--}__ */
 Route::middleware(['admin:admin'])->group(function (){
-    Route::post('/create-course', [CourseController::class, 'storeCourse'])->name('store.course');
-    Route::post('/create-class', [CourseController::class, 'createSemesyter'])->name('create.course');
+    Route::post('/create-course', [CourseController::class, 'storeUpdateCourse'])->name('store.course');
+    Route::get('/edit-course/{id}', [CourseController::class, 'editCourse'])->name('edit.course');
+    Route::put('/update-course/{id?}', [CourseController::class, 'storeUpdateCourse'])->name('update.course');
     Route::get('/list-course', [CourseController::class, 'listCourse'])->name('list.course');
+    Route::post('/create-class', [CourseController::class, 'createSemesyter'])->name('create.course');
     Route::get('/delete-course/{id}', [CourseController::class, 'deleteCourse'])->name('delete.course');
 });
 /**__{--COURSE END--}__ */

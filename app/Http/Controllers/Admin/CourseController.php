@@ -13,28 +13,41 @@ use RealRashid\SweetAlert\Facades\Alert;
 class CourseController extends Controller
 {
 
-    //* STORE COURSE 
-    public function storeCourse(Request $request){
+    //* CREATE AND UPDATE COURSE 
+    public function storeUpdateCourse(Request $request, $id = null){
         $request->validate([
-             'course_name' => 'unique:subjects,subject_name'
+            'course_name' => "required|unique:subjects,subject_name, $id",
+             'semester_id' => 'required',
         ]);
 
-        $storeSubjectData = new Subject();
-        $storeSubjectData->subject_name = Str::slug($request->course_name);
-        $storeSubjectData->semester_id = $request->semester_id;
-        $storeSubjectData->author = Auth::guard('admin')->user()->name;
+
+        $storeSubjectData = Subject::findOrNew($id);
+        $storeSubjectData->subject_name = Str::slug($request->course_name) ?? $storeSubjectData->subject_name ;
+        $storeSubjectData->semester_id = $request->semester_id ?? $storeSubjectData->semester_id;
+        $storeSubjectData->author = Auth::guard('admin')->user()->name ??  Auth::guard('admin')->user()->name;
         $storeSubjectData->save();
         Alert::toast('success!');
         return back();
-        // dd($request->all());
     }
 
+    //* EDIT COURSE 
+    public function editCourse($id){
+        $editCourseData = Subject::findOrFail($id);
+        $subjectData = Subject::select('id','semester_id','subject_name')
+            ->with('semester')
+            ->latest()->simplePaginate(5);
+        $semesterData = Semester::select('id','semester')->get();
+        // dd($semesterData);
+
+                       
+        return view('admin.courses.editCourse',compact('editCourseData','subjectData','semesterData'));
+    }
 
     //* LIST COURSE 
     public function listCourse(Request $request) {
         $subjectData = Subject::select('id','semester_id','subject_name')
                        ->with('semester')
-                       ->latest()->simplePaginate(10);
+                       ->latest()->simplePaginate(5);
                        
         $semesterData = Semester::select('id','semester')->get();
         // dd($subjectData[0]->semester->semester);
