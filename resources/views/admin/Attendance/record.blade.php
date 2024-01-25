@@ -2,14 +2,21 @@
 @section('admin_main_content')
     <div class="container">
 
+        
         <div class="row">
             <div class="col-12 mx-auto shadow card">
-                <div class="card p-5">
+                <div class="card ">
+                    <div class="card-header">
+                        <h4 class="p-0 m-0">Edit Attendance..</h4>
+                    </div>
+                </div>
+                <div class="card px-5 pb-5">
                     <form action="{{ route('attendance.record.check') }}" method="GET">
                         @csrf
 
                         <div class="row">
-                            <div class="col-md-4">
+
+                            <div class="col-lg-4">
                                 <label for="subject_id" class="mt-3">Select a Batch No</label>
                                 <select required name="subject_id" id="subject_id" class="form-control">
                                     <option value="" selected disabled>Select a batch</option>
@@ -23,7 +30,9 @@
 
 
                             </div>
-                            <div class="col-4">
+
+
+                            <div class="col-lg-4">
                                 <label for="batch_id" class="mt-3">Select a Batch No</label>
                                 <select required name="batch_id" id="batch_id" class="form-control">
                                     <option value="" selected disabled>Select a batch</option>
@@ -35,13 +44,16 @@
                                     <div class="text-danger"><strong>{{ $message }}</strong></div>
                                 @enderror
                             </div>
-                            <div class="col-4">
+
+
+                            <div class="col-lg-4 mt-lg-3">
                                 <label for="date">Select Date</label>
                                 <input required name="date" type="date" class="form-control">
                                 @error('date')
                                     <div class="text-danger"><strong>{{ $message }}</strong></div>
                                 @enderror
                             </div>
+                            
                         </div>
 
                         <button class="btn btn-primary w-100 mt-3">Submit</button>
@@ -51,7 +63,7 @@
         </div>
 
 
-        @isset($studentInfo)
+        @if (isset(request()->batch_id))
         <div class="row card my-3 pb-5">
             <div class="col-12">
                 <form action="{{ route('edit.attendance') }}" method="POST">
@@ -95,7 +107,10 @@
                 </form>
             </div>
         </div>
-        @endisset
+        @endif
+       
+        
+
   
 
     </div>
@@ -106,18 +121,33 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"
         integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        .select2-search__field {
-            border: 0;
-            outline: 0;
-        }
-
-        .batch_no,
-        .select2-selection__rendered {
-            border: 0px solid transparent;
-            outline: none;
-        }
-    </style>
+        <style>
+  
+            .select2-container {
+                border: 1px solid #D3D8DE;
+                border-radius: 6px;
+            }
+            .select2-container--default .select2-selection--single {
+                border: none;
+                height: 40px;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+    
+            .select2-search__field {
+                border: 0;
+                outline: 0;
+            }
+    
+            .batch_no,
+            .select2-selection__rendered {
+                border: 0px solid transparent;
+                outline: none;
+            }
+      
+       </style>
 @endpush
 @push('additional_js')
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"

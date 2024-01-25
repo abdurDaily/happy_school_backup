@@ -4,10 +4,12 @@
         <div class="row">
             <div class="col-10 mx-auto card shadow">
                 <div class="card">
-                    <div class="card-header" >
-                        <h4 style="margin: 0; padding:0;">Admit Student</h4>
+                    <div class="card-header m-0 p-0 mt-3 " style=" background-color: #D3D8DE;" >
+                        <h4  style="margin: 0; padding:10px;  font-size:15px; ">Admit Student</h4>
                     </div>
                 </div>
+
+
                 <div class="card-body">
                     <form action="{{ route('admit.student.database') }}" method="POST">
                         @csrf 
@@ -49,14 +51,31 @@
 @push('additional_css')
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
    <style>
-      .select2-search__field{
-        border: 0;
-        outline: 0;
-      }
-      .batch_no,.select2-selection__rendered {
-        border: 0px solid transparent;
-        outline: none;
-      }
+  
+        .select2-container {
+            border: 1px solid #D3D8DE;
+            border-radius: 6px;
+        }
+        .select2-container--default .select2-selection--single {
+            border: none;
+            height: 40px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .select2-search__field {
+            border: 0;
+            outline: 0;
+        }
+
+        .batch_no,
+        .select2-selection__rendered {
+            border: 0px solid transparent;
+            outline: none;
+        }
+  
    </style>
 @endpush
 @push('additional_js')

@@ -10,13 +10,14 @@
                     {{-- add subject --}}
                     <div class="col-lg-12 card shadow">
                         <div class="card-header">
-                            <h5 style="margin: 0; padding:0;">Add New Class</h5>
+                            <h5 style="margin: 0; padding:0;">Edit Class</h5>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.store.class') }}" method="POST">
+                            <form action="{{ route('admin.update.class',$classEditdata->id) }}" method="POST">
                                 @csrf
+                                @method('put')
                                 <label for="class_name" class="mb-0">course name</label>
-                                <input value="{{ old('class_name') }}" id="class_name" name="class_name" type="text" class="form-control"
+                                <input value="{{ $classEditdata->semester }}" id="class_name" name="class_name" type="text" class="form-control"
                                     placeholder="course name..">
 
                                     @error('class_name')
@@ -41,25 +42,27 @@
                             <td>Action</td>
                         </tr>
 
-
-                        @forelse ($classData as $key=>$data)
+                        @forelse ($classData as $key => $data)
                             <tr>
                                 <td>{{ $classData->firstItem() + $key }}</td>
                                 <td>{{ $data->semester }}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="{{ route('admin.edit.class', $data->id) }}"
+                                        <a href="{{ route('admin.edit.course', $data->id) }}"
                                             class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        <a href="{{ route('admin.delete.class', $data->id) }}"
+                                        <a href="{{ route('admin.delete.course', $data->id) }}"
                                             class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
                                     </div>
                                 </td>
                             </tr>
                         @empty
+                            
                         @endforelse
+
+
                     </table>
 
-                    {{ $classData->links() }}
+                    {{-- {{ $classData->links() }} --}}
                 </div>
             </div>
 

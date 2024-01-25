@@ -4,8 +4,8 @@
         <div class="row">
             <div class="col-12 mx-auto card shadow">
                 <div class="card">
-                    <div class="card-header py-4" >
-                        <h4>Attendance Search For PDF</h4>
+                    <div class="card-header pb-4" >
+                        <h4 class="m-0 p-0">Download PDF</h4>
                     </div>
 
                     <div class="card-body">
@@ -13,7 +13,7 @@
                             @csrf 
         
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-lg-6">
                                     <label for="subject_id" class="mt-3">Select a Batch No</label>
                                     <select required name="subject_id" id="subject_id" class="form-control">
                                         <option  value="" selected disabled>Select a batch</option>
@@ -27,7 +27,7 @@
         
         
                                 </div>
-                                <div class="col-6">
+                                <div class="col-lg-6">
                                     <label for="batch_id" class="mt-3">Select a Batch No</label>
                                     <select required name="batch_id" id="batch_id" class="form-control">
                                         <option  value="" selected disabled>Select a batch</option>
@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                         
-                            <button class="btn btn-primary w-100 mt-5">Submit</button>
+                            <button class="btn btn-primary w-100 mt-3">Submit</button>
                          </form>
                     </div>
                 </div>
@@ -53,15 +53,32 @@
 @push('additional_css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
-    .select2-search__field{
-      border: 0;
-      outline: 0;
+  
+    .select2-container {
+        border: 1px solid #D3D8DE;
+        border-radius: 6px;
     }
-    .batch_no,.select2-selection__rendered {
-      border: 0px solid transparent;
-      outline: none;
+    .select2-container--default .select2-selection--single {
+        border: none;
+        height: 40px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
- </style>
+
+    .select2-search__field {
+        border: 0;
+        outline: 0;
+    }
+
+    .batch_no,
+    .select2-selection__rendered {
+        border: 0px solid transparent;
+        outline: none;
+    }
+
+</style>
 @endpush
 @push('additional_js')
 <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>

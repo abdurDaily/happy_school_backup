@@ -7,8 +7,10 @@ use Barryvdh\DomPDF\Facade\Pdf;
 Route::middleware('check')->prefix('/attendance')->group(function(){
   
     Route::get('/add-new-batch', [AttendanceController::class, 'addNewBatch'])->name('add.new.batch');
+    Route::get('/edit-bath-number/{id}', [AttendanceController::class, 'editBathNumber'])->name('edit.batchname');
     Route::get('/delete-batch/{id}', [AttendanceController::class, 'deleteBatch'])->name('delete.batch');
-    Route::post('/add-new-batch', [AttendanceController::class, 'insertAddNewBatch'])->name('insert.new.batch');
+    Route::post('/add-new-batch', [AttendanceController::class, 'storeOrUpdate'])->name('insert.new.batch');
+    Route::put('/update-batch-no/{id?}', [AttendanceController::class, 'storeOrUpdate'])->name('update.batch');
     Route::get('/admit-student', [AttendanceController::class, 'admitStudent'])->name('admit.student');
     Route::post('/admit-student', [AttendanceController::class, 'admitStudentDatabase'])->name('admit.student.database');
     Route::get('/present-student', [AttendanceController::class, 'presentStudents'])->name('present.students');

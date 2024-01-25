@@ -5,31 +5,24 @@
             <div class="col-lg-4 mx-auto card shadow">
 
                 <div class="card-header">
-                    <h5 style="margin: 0; padding:0;">Add a bath with section</h5>
+                    <h5 style="margin: 0; padding:0;">Edit bath name</h5>
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('insert.new.batch') }}" method="POST">
-                        @csrf
-                        <label for="batch_no" class="mb-0">Batch name</label>
-                        <input id="batch_no" name="batch_no" type="text" class="form-control"
-                            placeholder="Bath name with section">
-                        @error('batch_no')
-                            <strong class="text-danger">{{ $message }}</strong>
-                        @enderror
-
-                        @if ($message = Session::get('error'))
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </div>
-                        @endif
-
-                        <button class="btn btn-primary w-100 mt-3">Upload</button>
+                    <form action="{{ route('update.batch',$updateData->id) }}" method="POST">
+                            @csrf
+                            @method('put')
+                            <label for="batch_no" class="mb-0">Batch name</label>
+                            <input id="batch_no" value="{{ $updateData->batch_no }}" name="batch_no" type="text" class="form-control"
+                                placeholder="Bath name with section">
+                            @error('batch_no')
+                                <strong class="text-danger">{{ $message }}</strong>
+                            @enderror
+                        <button class="btn btn-primary w-100 mt-3">Update</button>
                     </form>
                 </div>
-
-
             </div>
+
 
             <div class="col-lg-8 table-responsive mt-5 mt-lg-0">
                 <div class="card shadow ">
@@ -57,6 +50,7 @@
                     </table>
                 </div>
             </div>
+            
         </div>
     </div>
 @endsection

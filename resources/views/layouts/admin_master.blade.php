@@ -307,13 +307,6 @@
                                 </li>
 
 
-                                <li class="menu-item">
-                                  <a href="{{ route('check.present') }}" class="menu-link">
-                                    <div data-i18n="Pricing">Check Attendance</div>
-                                  </a>
-                                </li>
-
-
 
                                 <li class="menu-item">
                                   <a href="{{ route('attendance.record.check') }}" class="menu-link">
@@ -409,18 +402,14 @@
               <ul class="menu-sub">
                   
                   <li class="menu-item">
-                    <a href="#" class="menu-link">
-                      <div data-i18n="Pricing">Add New Class</div>
+                    <a href="{{ route('admin.create.class') }}" class="menu-link">
+                      <div data-i18n="Pricing">Create Class</div>
                     </a>
                   </li>
-                  <li class="menu-item">
-                    <a href="#" class="menu-link">
-                      <div data-i18n="Pricing">Add Course</div>
-                    </a>
-                  </li>
+                 
                   <li class="menu-item">
                     <a href="{{ route('admin.list.course') }}" class="menu-link">
-                      <div data-i18n="Pricing">List Course</div>
+                      <div data-i18n="Pricing">Create Course</div>
                     </a>
                   </li>
                   

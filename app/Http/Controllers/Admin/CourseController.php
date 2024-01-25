@@ -30,6 +30,7 @@ class CourseController extends Controller
         return back();
     }
 
+
     //* EDIT COURSE 
     public function editCourse($id){
         $editCourseData = Subject::findOrFail($id);
@@ -37,11 +38,10 @@ class CourseController extends Controller
             ->with('semester')
             ->latest()->simplePaginate(5);
         $semesterData = Semester::select('id','semester')->get();
-        // dd($semesterData);
-
-                       
+             
         return view('admin.courses.editCourse',compact('editCourseData','subjectData','semesterData'));
     }
+
 
     //* LIST COURSE 
     public function listCourse(Request $request) {
@@ -50,7 +50,6 @@ class CourseController extends Controller
                        ->latest()->simplePaginate(5);
                        
         $semesterData = Semester::select('id','semester')->get();
-        // dd($subjectData[0]->semester->semester);
         return view('admin.courses.addCourse', compact('subjectData','semesterData'));
     }
 
@@ -59,10 +58,13 @@ class CourseController extends Controller
     public function deleteCourse($id){
         Subject::findOrFail($id)->delete();
         Alert::error('Deleted ', 'the subject!');
-        return back();
+        if($id){
+            return redirect()->route('admin.list.course');
+        }
     }
 
-    //*Create Semesyter
+
+    //*Create Semester
     public function createSemesyter(Request $request){
         $request->validate([
            'add_class' => 'unique:semesters,semester',
@@ -73,5 +75,43 @@ class CourseController extends Controller
         Alert::success('successfully', 'added new class');
         return back();
 
+    }
+
+
+
+    //* CREATE CLASS
+    public function createClass(){
+        $classData = Semester::select('id','semester')->latest()->simplePaginate(5);
+        return view('admin.courses.addClass',compact('classData'));
+    }
+
+
+    //* STORE AND UPDATE 
+    public function storeUpdateClass(Request $request, $id = null){
+        $request->validate([
+            'class_name' => "required|unique:semesters,semester,$id",
+        ]);
+      $classData = Semester::findOrNew($id);
+      $classData->semester = str::slug($request->class_name) ?? $classData->semester;
+      $classData->save();
+      Alert::success('Success!');
+      return redirect()->route('admin.create.class');
+    }
+
+    //* EDIT CLASS 
+    public function editClass($id){
+        $classEditdata = Semester::findOrFail($id);
+        $classData = Semester::select('id','semester')->simplePaginate(5);
+        return view('admin.courses.editClass', compact('classEditdata','classData'));
+    }
+
+
+    //* DELETE CLASS 
+    public function deleteClass($id){
+        Semester::findOrFail($id)->delete();
+        Alert::error('Deleted!', 'your all relevent record will be deleted.');
+        if($id){
+            return redirect()->route('admin.create.class');
+        }
     }
 }

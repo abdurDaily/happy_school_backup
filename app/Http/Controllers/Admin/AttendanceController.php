@@ -29,28 +29,41 @@ class AttendanceController extends Controller
         return view('Admin.Attendance.addNewBatch', compact('batchNumber'));
     }
 
-    // * DELETE BATCH 
-    public function deleteBatch($id){
-        BatchNumber::findOrFail($id)->delete();
-        Alert::toast('deleted!','error');
-        return back();
+
+    //*EDIT BATH NAME 
+    public function editBathNumber($id){
+        $updateData = BatchNumber::findOrFail($id);
+        $batchNumber = BatchNumber::select('id','batch_no')->latest()->get();
+        return view('admin.Attendance.editBatch',compact('updateData','batchNumber'));
     }
-    //* INSERT ADD NEW BATCH INDATABASE  
-    public function insertAddNewBatch(Request $request)
+
+
+    //* STORE AND UPDATE 
+    public function storeOrUpdate(Request $request, $id = null)
     {
-        $validated = $request->validate([
-            'batch_no' => 'required|unique:batch_numbers,batch_no',
+        $request->validate([
+            'batch_no' => "required|unique:batch_numbers,batch_no,$id",
         ]);
 
         if (BatchNumber::where('batch_no', Str::slug($request->batch_no))->exists()) {
             return redirect()->route('add.new.batch')->withErrors(['batch_no' => 'this batch already tacken']);
         }
-        $batchNo = new BatchNumber();
+        $batchNo = BatchNumber::findOrNew($id);
         $batchNo->batch_no = Str::slug($request->batch_no);
         $batchNo->save();
         Alert::success('successfully', 'new batch inserted');
         return back();
     }
+    
+
+    // * DELETE BATCH 
+    public function deleteBatch($id){
+        BatchNumber::findOrFail($id)->delete();
+        Alert::toast('deleted!','error');
+        return redirect()->route('add.new.batch');
+    }
+
+
 
     //* ADMIT STUDENTS 
     public function admitStudent()
