@@ -2,6 +2,7 @@
 
 
 namespace App\Http\Controllers\Admin;
+
 use Dompdf\Dompdf;
 use Illuminate\Bus\Batch;
 use Illuminate\Support\Str;
@@ -16,6 +17,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\AttendanceStore;
+use App\Models\Admin\Semester;
 use Illuminate\Validation\Rules\Exists;
 use SebastianBergmann\CodeCoverage\Report\Xml\Unit;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -25,16 +27,17 @@ class AttendanceController extends Controller
     //* ADD NEW BATCH 
     public function addNewBatch()
     {
-        $batchNumber = BatchNumber::select('id','batch_no')->latest()->get();
+        $batchNumber = BatchNumber::select('id', 'batch_no')->latest()->get();
         return view('Admin.Attendance.addNewBatch', compact('batchNumber'));
     }
 
 
     //*EDIT BATH NAME 
-    public function editBathNumber($id){
+    public function editBathNumber($id)
+    {
         $updateData = BatchNumber::findOrFail($id);
-        $batchNumber = BatchNumber::select('id','batch_no')->latest()->get();
-        return view('admin.Attendance.editBatch',compact('updateData','batchNumber'));
+        $batchNumber = BatchNumber::select('id', 'batch_no')->latest()->get();
+        return view('admin.Attendance.editBatch', compact('updateData', 'batchNumber'));
     }
 
 
@@ -54,12 +57,13 @@ class AttendanceController extends Controller
         Alert::success('successfully', 'new batch inserted');
         return back();
     }
-    
+
 
     // * DELETE BATCH 
-    public function deleteBatch($id){
+    public function deleteBatch($id)
+    {
         BatchNumber::findOrFail($id)->delete();
-        Alert::toast('deleted!','error');
+        Alert::toast('deleted!', 'error');
         return redirect()->route('add.new.batch');
     }
 
@@ -80,6 +84,7 @@ class AttendanceController extends Controller
         $admitStudent->std_id = $request->std_id;
         $admitStudent->batch_number = $request->batch_no;
         $admitStudent->save();
+        Alert::success('Success!');
         return back();
     }
 
@@ -99,15 +104,15 @@ class AttendanceController extends Controller
         $batchId = BatchNumber::all();
         $query = Attendance::query();
 
-            if ($request->subject_id) {
-                $query->where('subject_id', $request->subject_id);
-            }
-            if ($request->date) {
-                $query->where('date', $request->date);
-            }
-            if ($request->batch_id) {
-                $query->where('batch_number_id', $request->batch_id);
-            }
+        if ($request->subject_id) {
+            $query->where('subject_id', $request->subject_id);
+        }
+        if ($request->date) {
+            $query->where('date', $request->date);
+        }
+        if ($request->batch_id) {
+            $query->where('batch_number_id', $request->batch_id);
+        }
 
         $students = AdmitStudent::where('batch_number', $request->batch_id)->get();
         $atteances = $query->with('attendanceStore')->first();
@@ -229,21 +234,19 @@ class AttendanceController extends Controller
             $students = $batchWithStudent->admitStd;
             $totalAttendence = Attendance::where('subject_id', $request->subject_id)->count();
             $SubjectName = Subject::where('id', $request->subject_id)->first();
-           
-           
+
+
             $pdf = Pdf::loadView('admin.Attendance.attendancePdfData', compact('students', 'totalAttendence', 'subjectId', 'batchId', 'SubjectName', 'batchWithStudent'));
             return $pdf->stream('billing-invoice.pdf');
 
-            return PDF::loadView('admin.Attendance.attendancePdfData', compact('students', 'totalAttendence','subjectId','batchId'))->setPaper('A4')->setOrientation('portrait')->stream();
+            return PDF::loadView('admin.Attendance.attendancePdfData', compact('students', 'totalAttendence', 'subjectId', 'batchId'))->setPaper('A4')->setOrientation('portrait')->stream();
         }
-        
-            $pdf = Pdf::loadView('admin.Attendance.attendancePdfData', compact('subjectId', 'batchId'));
-            return $pdf->stream('billing-invoice.pdf');
+
+        $pdf = Pdf::loadView('admin.Attendance.attendancePdfData', compact('subjectId', 'batchId'));
+        return $pdf->stream('billing-invoice.pdf');
     }
 
-
-
-    // EDIT ATTANDANCE 
+    //* EDIT ATTANDANCE 
     public function editAttendance(Request $request)
     {
         $oldData = AttendanceStore::where('attendance_id', $request->attendenceId)->delete();
@@ -254,6 +257,49 @@ class AttendanceController extends Controller
             $allRecords->save();
         }
         return back();
+    }
+
+
+    //* ADMITED STUDENTS 
+    public function admitedStudents()
+    {
+        $allAdmitedStudent = admitStudent::with('bathNo')->latest()->simplePaginate(5);
+        return view('admin.Attendance.admitedStudent', compact('allAdmitedStudent'));
+    }
+
+    //* EDIT ADMITED STUDENT
+    public function editAdmitedStudents($id)
+    {
+        $editStudent = admitStudent::with('bathNo')->findOrFail($id);
+        $allBatchs = BatchNumber::select('id', 'batch_no')->get();
+        return view('admin.Attendance.editStudentInfo', compact('editStudent', 'allBatchs'));
+    }
+
+    //* UPDATE STUDENTS INFO...
+    public function updateStdInfo(Request $request)
+    {
         
+        $request->validate([
+            'std_name' => 'required',
+            'std_id' => 'required',
+            'batch_number' => 'required',
+        ]);
+
+        $updateStudentInfo = admitStudent::findOrFail($request->hidden_id);
+        $updateStudentInfo->std_name = $request->std_name;
+        $updateStudentInfo->std_id = $request->std_id;
+        $updateStudentInfo->batch_number = $request->batch_number;
+        $updateStudentInfo->save();
+        Alert::success('success!');
+        return redirect()->route('admited.student');
+
+
+    }
+
+    //* DELETE ADMITED STUDENT
+    public function deleteStudent($id){
+        admitStudent::findOrFail($id)->delete();
+        Alert::warning('Deleted Successfully');
+        return redirect()->route('admited.student');
     }
 }

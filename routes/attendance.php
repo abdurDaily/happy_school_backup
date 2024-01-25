@@ -21,5 +21,12 @@ Route::middleware('check')->prefix('/attendance')->group(function(){
     Route::get('/attendance-pdf', [AttendanceController::class, 'attendancePdf'])->name('attendance.pdf');
     Route::get('/attendance-pdf-data', [AttendanceController::class, 'attendancePdfData'])->name('attendance.pdf.data');
     Route::put('/edit-attendance', [AttendanceController::class, 'editAttendance'])->name('edit.attendance');
+    
 
+
+
+    Route::get('/admited-students', [AttendanceController::class, 'admitedStudents'])->name('admited.student');
+    Route::get('/edit-admited-students/{id}', [AttendanceController::class, 'editAdmitedStudents'])->name('edit.admited.student');
+    Route::put('/update-student-info', [AttendanceController::class, 'updateStdInfo'])->name('update.std.info');
+    Route::get('/delete-student/{id}', [AttendanceController::class, 'deleteStudent'])->name('delete.student');
   })->middleware('check');

@@ -282,7 +282,7 @@
                           {{-- ATTENDANCE START --}}
                           <li class="menu-item">
                             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                              <i style="font-size: 18px;" class="fa-solid fa-address-card"></i> &nbsp;&nbsp;
+                              <i style="font-size: 18px;" class="fa-solid fa-pen-nib"></i>&nbsp;&nbsp;
                               <div data-i18n="Front Pages">Attendance</div>
                             </a>
                             <ul class="menu-sub">
@@ -298,6 +298,15 @@
                                     <div data-i18n="Pricing">Admit Student</div>
                                   </a>
                                 </li>
+
+                                <li class="menu-item">
+                                  <a href="{{ route('admited.student') }}" class="menu-link">
+                                    <div data-i18n="Pricing">Student List</div>
+                                  </a>
+                                </li>
+
+
+                                
 
 
                                 <li class="menu-item">
