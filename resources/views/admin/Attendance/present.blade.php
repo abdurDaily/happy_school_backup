@@ -29,8 +29,11 @@
                         </div>
 
 
+                        @if (isset(request()->batch_id) )
 
-                        @if (isset(request()->batch_id))
+                    
+
+                        @if (count($studentInfo) > 0)
                             <form action="{{ route('present.submit') }}" method="POST">
                                 @csrf
                                 <div class="row">
@@ -87,6 +90,11 @@
 
                                 <button class="btn btn-primary w-100 my-3">Submit</button>
                             </form>
+                        @else
+                            <h5 class="text-center">No Student Admitted in this batch!</h5>
+                        @endif
+                            
+
                         @endif
                     </div>
                 </div>

@@ -46,7 +46,7 @@
                             </div>
 
 
-                            <div class="col-lg-4 mt-lg-3">
+                            <div class="col-lg-4">
                                 <label for="date">Select Date</label>
                                 <input required name="date" type="date" class="form-control">
                                 @error('date')
@@ -63,50 +63,54 @@
         </div>
 
 
-        @if (isset(request()->batch_id))
-        <div class="row card my-3 pb-5">
-            <div class="col-12">
-                <form action="{{ route('edit.attendance') }}" method="POST">
-                    @csrf
-                    @method('put')
-                    <input  type="hidden" name="attendenceId" value="{{ $atteances->id }}">
+        @if (isset(request()->batch_id) )
+            @if($attendedStudetID )
+            <div class="row card my-3 pb-5">
+                <div class="col-12">
+                    <form action="{{ route('edit.attendance') }}" method="POST">
+                        @csrf
+                        @method('put')
+                        <input  type="hidden" name="attendenceId" value="{{ $atteances->id }}">
 
-                    <table class="table mt-5 table-responsive table-striped table-hover">
-                        <tr>
-                            <th>SN</th>
-                            <th>Student Name</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                        </tr>
-
-                        @forelse ($students as $key => $student)
+                        <table class="table mt-5 table-responsive table-striped table-hover">
                             <tr>
-                                <td>{{ ++$key }}</td>
-                                <td>{{ $student->std_name }}</td>
-                                <td>{{ $student->std_id }}</td>
-                                <td>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input"
-                                            {{ in_array($student->id, $attendedStudetID) ? 'checked' : '' }} type="checkbox"
-                                            role="switch" id="flexSwitchCheckDefault" name="present[]"
-                                            value="{{ $student->id }}">
-                                        <label class="form-check-label"
-                                            for="flexSwitchCheckDefault">{{ in_array($student->id, $attendedStudetID) ? 'Present' : 'Absent' }}</label>
-                                    </div>
-                                </td>
+                                <th>SN</th>
+                                <th>Student Name</th>
+                                <th>Date</th>
+                                <th>Status</th>
                             </tr>
-                        @empty
-                        <tr>
-                            <td colspan="4" align="center">no record found 🤦‍♂️</td>
-                        </tr>
-                        @endforelse
-                    </table>
+
+                            @forelse ($students as $key => $student)
+                                <tr>
+                                    <td>{{ ++$key }}</td>
+                                    <td>{{ $student->std_name }}</td>
+                                    <td>{{ $student->std_id }}</td>
+                                    <td>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input"
+                                                {{ in_array($student->id, $attendedStudetID) ? 'checked' : '' }} type="checkbox"
+                                                role="switch" id="flexSwitchCheckDefault" name="present[]"
+                                                value="{{ $student->id }}">
+                                            <label class="form-check-label"
+                                                for="flexSwitchCheckDefault">{{ in_array($student->id, $attendedStudetID) ? 'Present' : 'Absent' }}</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                            <tr>
+                                <td colspan="4" align="center">no record found 🤦‍♂️</td>
+                            </tr>
+                            @endforelse
+                        </table>
 
 
-                    <button class="btn btn-primary w-100">Submit</button>
-                </form>
+                        <button class="btn btn-primary w-100">Submit</button>
+                    </form>
+                </div>
             </div>
-        </div>
+            @else
+            <h1>record not found!</h1>
+            @endif
         @endif
        
         

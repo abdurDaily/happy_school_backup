@@ -33,7 +33,7 @@
 
             <div class="col-lg-8 table-responsive mt-5 mt-lg-0">
                 <div class="card shadow ">
-                    <table class="table table-striped table-hover text-center text-capitalize ">
+                    <table class="table table-striped  table-hover text-center text-capitalize ">
                         <tr>
                             <td>Sn.</td>
                             <td>Batch Name</td>
@@ -43,7 +43,7 @@
                         @forelse ($batchNumber as $key=>$data)
                             <tr>
                                 <td>{{ ++$key }}</td>
-                                <td>{{ $data->batch_no }}</td>
+                                <td>{{ Str::upper($data->batch_no)  }}</td>
                                 <td>
                                     <div class="btn-group">
                                         <a href="{{ route('edit.batchname', $data->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>

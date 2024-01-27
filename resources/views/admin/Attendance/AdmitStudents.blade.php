@@ -30,7 +30,7 @@
                         <select name="batch_no" id="batch_no" class="form-control">
                             <option selected disabled>Select a batch</option>
                             @foreach ($batchNo as $data)
-                                <option value="{{ $data->id }}">{{ $data->batch_no }}</option>
+                                <option value="{{ $data->id }}">{{ Str::upper($data->batch_no ) }}</option>
                             @endforeach
                         </select>
 

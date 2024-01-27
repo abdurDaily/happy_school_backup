@@ -5,10 +5,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header shadow mb-2">
                             <h4>All Admited Student's</h4>
                         </div>
-                        <div class="card-body table-responsive">
+                        <div class="card-body table-responsive shadow">
                             <table class="table  table-hover table-striped">
                                 <tr>
                                     <td>Sn.</td>

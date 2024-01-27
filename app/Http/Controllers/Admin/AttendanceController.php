@@ -52,7 +52,7 @@ class AttendanceController extends Controller
             return redirect()->route('add.new.batch')->withErrors(['batch_no' => 'this batch already tacken']);
         }
         $batchNo = BatchNumber::findOrNew($id);
-        $batchNo->batch_no = Str::slug($request->batch_no);
+        $batchNo->batch_no = str($request->batch_no)->slug()->upper();
         $batchNo->save();
         Alert::success('successfully', 'new batch inserted');
         return back();
@@ -82,10 +82,10 @@ class AttendanceController extends Controller
         $admitStudent = new AdmitStudent();
         $admitStudent->std_name = $request->std_name;
         $admitStudent->std_id = $request->std_id;
-        $admitStudent->batch_number = $request->batch_no;
+        $admitStudent->batch_number = Str::upper($request->batch_no) ;
         $admitStudent->save();
         Alert::success('Success!');
-        return back();
+        return redirect()->route('admited.student');
     }
 
     //* PRESENT STUDENTS 
@@ -116,7 +116,7 @@ class AttendanceController extends Controller
 
         $students = AdmitStudent::where('batch_number', $request->batch_id)->get();
         $atteances = $query->with('attendanceStore')->first();
-        $attendedStudetID = $atteances->attendanceStore->pluck('admit_student_id')->toArray();
+        $attendedStudetID = $atteances ? $atteances->attendanceStore->pluck('admit_student_id')->toArray() : null;
         return view('Admin.Attendance.record', compact('atteances', 'subjectId', 'batchId', 'students', 'attendedStudetID'));
     }
 
