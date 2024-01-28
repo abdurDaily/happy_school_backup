@@ -5,8 +5,18 @@
             <div class="col-12 mx-auto shadow card">
                 <div class="card">
 
-                    <div class="card-header m-0 p-0">
-                        <h5 class="bg-primary p-2 mt-3" style="color:#fff; font-weight:lighter; border-radius:5px; font-size:14px;">Provide Attendance</h5>
+                    @error('hasAttendance')
+                    <div class="card">
+                        <div class="card-header p-0">
+                            <div class="alert-danger">
+                                <h5 class="text-center py-4">{{ $message }}</h5>
+                             </div>
+                        </div>
+                     </div>
+                    @enderror
+
+                    <div class="card-header m-0 p-0 d-flex justify-content-end">
+                        <h5 class="py-2 w-25 bg-primary text-center" style="color:#fafafa; font-weight:lighter; border-radius:5px; font-size:16px;">Provide Attendance</h5>
                     </div>
                     <div class="card-body p-0">
                         <div class="row">

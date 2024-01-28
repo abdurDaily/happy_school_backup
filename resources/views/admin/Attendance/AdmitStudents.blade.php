@@ -17,13 +17,13 @@
                         <label for="std_name" class="">Insert Student Name</label>
                         <input id="std_name" name="std_name" type="text" class="form-control" placeholder="Student Name">
                         @error('std_name')
-                           <strong class="text-danger">{{ $message }}</strong>
+                           <strong class="text-danger">{{ $message }}</strong> <br>
                         @enderror
 
                         <label for="std_id" class="mt-3">Insert Student Name</label>
                         <input id="std_id" name="std_id" type="text" class="form-control" placeholder="Student ID">
                         @error('std_id')
-                           <strong class="text-danger">{{ $message }}</strong>
+                           <strong class="text-danger">{{ $message }}</strong> <br>
                         @enderror
 
                         <label for="batch_no" class="mt-3">Select a Batch </label>
@@ -37,7 +37,7 @@
                      
 
                         @error('batch_no')
-                           <strong class="text-danger">{{ $message }}</strong>
+                           <strong class="text-danger">{{ $message }}</strong> <br>
                         @enderror
 
                         <button class="btn btn-primary w-100 mt-3">Upload</button>

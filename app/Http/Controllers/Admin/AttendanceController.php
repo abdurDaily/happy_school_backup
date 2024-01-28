@@ -79,10 +79,15 @@ class AttendanceController extends Controller
     //* ADMIT STUDENT IN DATABASE 
     public function admitStudentDatabase(Request $request)
     {
+        $request->validate([
+            'std_name' => 'required',
+            'std_id' => 'required|unique:admit_students,std_id',
+            'batch_no' => 'required',
+        ]);
         $admitStudent = new AdmitStudent();
-        $admitStudent->std_name = $request->std_name;
-        $admitStudent->std_id = $request->std_id;
-        $admitStudent->batch_number = Str::upper($request->batch_no) ;
+        $admitStudent->std_name = str($request->std_name)->upper();
+        $admitStudent->std_id = str($request->std_id)->slug()->upper();
+        $admitStudent->batch_number = str($request->batch_no)->slug()->upper();
         $admitStudent->save();
         Alert::success('Success!');
         return redirect()->route('admited.student');
@@ -93,7 +98,6 @@ class AttendanceController extends Controller
     {
         $result = BatchNumber::all();
         $subjectId = Subject::all();
-
         return view('Admin.Attendance.present', compact('result', 'subjectId'));
     }
 
@@ -118,6 +122,7 @@ class AttendanceController extends Controller
         $atteances = $query->with('attendanceStore')->first();
         $attendedStudetID = $atteances ? $atteances->attendanceStore->pluck('admit_student_id')->toArray() : null;
         return view('Admin.Attendance.record', compact('atteances', 'subjectId', 'batchId', 'students', 'attendedStudetID'));
+       
     }
 
     public function checkPresent(Request $request)
@@ -134,7 +139,7 @@ class AttendanceController extends Controller
 
         $test = Attendance::where('batch_number_id', $request->check_id)->where('date', $request->date)->exists();
         if ($test) {
-            return back();
+            return back()->withErrors(['hasAttendance'=> 'This attendance has already tacken!']);
             exit();
         }
 
@@ -151,6 +156,8 @@ class AttendanceController extends Controller
             $allRecords->admit_student_id  = $stdId;
             $allRecords->save();
         }
+        
+        Alert::success('success');
         return back();
     }
 
@@ -175,6 +182,7 @@ class AttendanceController extends Controller
         $atteances = $query->with('attendanceStore')->first();
         $attendedStudetID = $atteances->attendanceStore->pluck('admit_student_id')->toArray();
         return view('Admin.Attendance.record', compact('subjectId', 'batchId', 'students', 'attendedStudetID'));
+        
     }
 
 
@@ -201,10 +209,12 @@ class AttendanceController extends Controller
             // dd($students);
             $totalAttendence = Attendance::where('subject_id', $request->subject_id)->count();
 
+            
             // dd($students);
             return view('Admin.Attendance.allRecord', compact('students', 'totalAttendence', 'subjectId', 'batchId'));
         }
         return view('Admin.Attendance.allRecord', compact('subjectId', 'batchId'));
+        
     }
 
 
@@ -256,6 +266,7 @@ class AttendanceController extends Controller
             $allRecords->admit_student_id  = $stdId;
             $allRecords->save();
         }
+        
         return back();
     }
 

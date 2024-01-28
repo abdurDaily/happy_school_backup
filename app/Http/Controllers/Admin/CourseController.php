@@ -22,7 +22,7 @@ class CourseController extends Controller
 
 
         $storeSubjectData = Subject::findOrNew($id);
-        $storeSubjectData->subject_name = Str::slug($request->course_name) ?? $storeSubjectData->subject_name ;
+        $storeSubjectData->subject_name = str($request->course_name)->slug()->upper() ?? $storeSubjectData->subject_name ;
         $storeSubjectData->semester_id = $request->semester_id ?? $storeSubjectData->semester_id;
         $storeSubjectData->author = Auth::guard('admin')->user()->name ??  Auth::guard('admin')->user()->name;
         $storeSubjectData->save();
@@ -92,7 +92,7 @@ class CourseController extends Controller
             'class_name' => "required|unique:semesters,semester,$id",
         ]);
       $classData = Semester::findOrNew($id);
-      $classData->semester = str::slug($request->class_name) ?? $classData->semester;
+      $classData->semester = str($request->class_name)->slug()->upper() ?? $classData->semester;
       $classData->save();
       Alert::success('Success!');
       return redirect()->route('admin.create.class');
