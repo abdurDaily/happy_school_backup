@@ -100,3 +100,12 @@
         }
     </style>
 @endpush
+
+@push('additional_js')
+    <script>
+        $('#class_name').keyup(function(){
+            let value = $(this).val()
+            $(this).val(value.replace(' ', '-'))
+        })
+    </script>
+@endpush

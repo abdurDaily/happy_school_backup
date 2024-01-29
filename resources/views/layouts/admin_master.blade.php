@@ -418,9 +418,18 @@
                  
                   <li class="menu-item">
                     <a href="{{ route('admin.list.course') }}" class="menu-link">
-                      <div data-i18n="Pricing">Create Course</div>
+                      <div data-i18n="Pricing">Assign Course</div>
                     </a>
                   </li>
+
+                  
+                  <li class="menu-item">
+                    <a href="{{ route('admin.list.course') }}" class="menu-link">
+                      <div data-i18n="Pricing">Course Lecture</div>
+                    </a>
+                  </li>
+
+
                   
               </ul>
             </li>

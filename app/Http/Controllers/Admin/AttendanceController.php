@@ -137,7 +137,7 @@ class AttendanceController extends Controller
     public function submitAttendance(Request $request)
     {
 
-        $test = Attendance::where('batch_number_id', $request->check_id)->where('date', $request->date)->exists();
+        $test = Attendance::where('batch_number_id', $request->subject_id)->where('date', $request->date)->exists();
         if ($test) {
             return back()->withErrors(['hasAttendance'=> 'This attendance has already tacken!']);
             exit();
@@ -260,6 +260,14 @@ class AttendanceController extends Controller
     public function editAttendance(Request $request)
     {
         $oldData = AttendanceStore::where('attendance_id', $request->attendenceId)->delete();
+       
+
+
+       if($request->present == null){
+        return back();
+       }
+
+
         foreach ($request->present as $stdId) {
             $allRecords = new AttendanceStore();
             $allRecords->attendance_id = $request->attendenceId;

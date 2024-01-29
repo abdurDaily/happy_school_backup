@@ -185,12 +185,16 @@ Route::middleware(['admin:admin'])->group(function (){
 
 /**__{--COURSE START--}__ */
 Route::middleware(['admin:admin'])->group(function (){
+
     Route::post('/create-course', [CourseController::class, 'storeUpdateCourse'])->name('store.course');
     Route::get('/edit-course/{id}', [CourseController::class, 'editCourse'])->name('edit.course');
     Route::put('/update-course/{id?}', [CourseController::class, 'storeUpdateCourse'])->name('update.course');
     Route::get('/list-course', [CourseController::class, 'listCourse'])->name('list.course');
-    Route::post('/create-class', [CourseController::class, 'createSemesyter'])->name('create.course');
+    Route::post('/create-class', [CourseController::class, 'createSemester'])->name('create.course');
     Route::get('/delete-course/{id}', [CourseController::class, 'deleteCourse'])->name('delete.course');
+    
+    
+    Route::get('/add-lecture', [CourseController::class, 'addLecture'])->name('add.course.lecture');
 
 
     Route::get('/create-class', [CourseController::class, 'createClass'])->name('create.class');
@@ -200,3 +204,9 @@ Route::middleware(['admin:admin'])->group(function (){
     Route::get('/edit-class/{id}', [CourseController::class, 'editClass'])->name('edit.class');
 });
 /**__{--COURSE END--}__ */
+
+
+
+
+
+
