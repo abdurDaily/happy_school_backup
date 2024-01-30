@@ -281,13 +281,13 @@ class AttendanceController extends Controller
         
         $request->validate([
             'std_name' => 'required',
-            'std_id' => 'required',
+            'std_id' => 'required|unique:admit_students,std_id,$request->hidden_id',
             'batch_number' => 'required',
         ]);
 
         $updateStudentInfo = admitStudent::findOrFail($request->hidden_id);
         $updateStudentInfo->std_name = $request->std_name;
-        $updateStudentInfo->std_id = $request->std_id;
+        $updateStudentInfo->std_id = Str::slug($request->std_id);
         $updateStudentInfo->batch_number = $request->batch_number;
         $updateStudentInfo->save();
         Alert::success('success!');
