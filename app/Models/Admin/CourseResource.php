@@ -11,4 +11,11 @@ class CourseResource extends Model
     public function Semester(){
         return $this->belongsTo(Semester::class);
     }
+
+
+    public function Subject(){
+        return $this->belongsTo(Subject::class);
+    }
+
+
 }

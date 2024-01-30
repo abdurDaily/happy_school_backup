@@ -22,16 +22,20 @@
                             @forelse ($resource as $key => $data)
                             <tr>
                                 <td>{{ $resource->firstItem() + $key }}</td>
-                                <td>{{ $data->Semester->semester }}</td>
-                                <td>{{ $data->video_url }}</td>
-                                <td>{{ $data->documents }}</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a href="{{ route('admin.edit.class', $data->id) }}"
-                                            class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        <a href="{{ route('admin.delete.class', $data->id) }}"
-                                            class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
-                                    </div>
+                                <td>{{ $data->subject_name }}</td>
+                                <td style="width: 35%">
+                                    @foreach ($data->courseResources as $subKey => $sub)
+                                     <a target="_blank" class="badge  {{ $subKey %2 == 0 ? 'bg-primary' : 'bg-dark'}}" href="{{ $sub->video_url }}">Lecture -{{ ++$subKey }}</a>
+                                    @endforeach
+                                </td>
+
+                                <td style="width: 35%">
+                                    @foreach ($data->courseResources as $subKey => $sub)
+                                        @if ($sub->documents)
+                                            <a target="_blank" class="badge  {{ $subKey %2 == 0 ? 'bg-primary' : 'bg-dark'}}" href="{{ $sub->documents }}">
+                                                {{ $sub->documents != null ? $sub->documents : '' }} </a>
+                                        @endif
+                                    @endforeach
                                 </td>
                             </tr>
                             @empty

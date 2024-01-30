@@ -57,8 +57,14 @@
                                     </div>
 
 
+
+
+
+                                    
+
+
                                     <div class="col-lg-6">
-                                        <label for="subject_id">Select a Batch No</label>
+                                        <label for="subject_id">Select Subject</label>
                                         <select style="border: 1px solid red !importent;" required name="subject_id" id="subject_id" class="form-control">
                                             <option value="" selected disabled>Select a batch</option>
                                             @foreach ($subjectId as $subjectData)

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('course_resources', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('semester_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('subject_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('video_url')->nullable();
             $table->string('documents')->nullable();
             $table->timestamps();

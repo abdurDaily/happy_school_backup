@@ -195,6 +195,7 @@ Route::middleware(['admin:admin'])->group(function (){
     
     
     Route::get('/add-lecture', [CourseController::class, 'addLecture'])->name('add.course.lecture');
+    Route::post('/store-course', [CourseController::class, 'storeCourse'])->name('store.course');
     Route::get('/list-lecture', [CourseController::class, 'listLecture'])->name('list.lecture');
 
 

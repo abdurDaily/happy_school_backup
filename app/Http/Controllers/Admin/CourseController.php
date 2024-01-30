@@ -9,6 +9,7 @@ use App\Models\Admin\Semester;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\CourseResource;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Exists;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class CourseController extends Controller
@@ -119,18 +120,67 @@ class CourseController extends Controller
     }
 
 
+
+
+
+
     //** COURSE LECTURE 
     public function addLecture() {
-        
-
-       return view('admin.courses.courseLecture');
+       $allSubject = Subject::select('id','semester_id','subject_name')
+       ->with('courseResources')
+       ->get();
+    //    dd($allSubject);
+       return view('admin.courses.courseLecture',compact('allSubject'));
     }
+
+
+
+
+
+
+
+
+    
 
     //** LIST LECTURE 
     public function listLecture(){
-        $resource = CourseResource::with('Semester')->simplePaginate(3);
-        // dd($resourch);
+        
+        // $resource = CourseResource::with('Subject')->latest()->simplePaginate(3);
+        $resource = Subject::with('courseResources')->select('id','semester_id','subject_name')->simplePaginate(3);
+        // dd($resource);
         return view('admin.courses.courseList',compact('resource'));
+    }
 
+    //* STORE COURSE 
+    public function storeCourse(Request $request, $id = null){
+
+        if ($request->hasFile('document')) {
+            $extension = $request->document->extension();
+            $uniqName =  uniqid() . "." . $extension;
+            $path = $request->document->storeAs('documents', $uniqName, 'public');
+        }
+
+        $request->validate([
+          'subject_name' => 'required',
+          'document' => 'nullable',
+          'video_link' => 'nullable|url:http,https',
+        ]);
+
+
+        if( $request->video_link != ''  || $request->documents != '' ){
+            $courseResorceData = CourseResource::findOrNew($id);
+            $courseResorceData->subject_id = $request->subject_name;
+        
+                if($request->hasFile('document')){
+                    $courseResorceData->documents = $path;
+                }
+                if($request->has('video_link')){
+                    $courseResorceData->video_url = $request->video_link;
+                }
+
+            $courseResorceData->save();
+            Alert::toast('Success Toast','success');;
+            return redirect()->route('admin.list.lecture');
+        }
     }
 }

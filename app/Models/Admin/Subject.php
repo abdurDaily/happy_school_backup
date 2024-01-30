@@ -20,4 +20,9 @@ class Subject extends Model
     public function attendances(){
       return $this->hasMany(Attendance::class);
   }
+
+ 
+    public function courseResources() {
+      return $this->hasMany(CourseResource::class);
+    }
 }
