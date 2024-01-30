@@ -22,7 +22,7 @@ class CourseController extends Controller
 
 
         $storeSubjectData = Subject::findOrNew($id);
-        $storeSubjectData->subject_name = Str::slug($request->course_name) ?? $storeSubjectData->subject_name ;
+        $storeSubjectData->subject_name = str($request->course_name)->slug()->upper() ?? $storeSubjectData->subject_name ;
         $storeSubjectData->semester_id = $request->semester_id ?? $storeSubjectData->semester_id;
         $storeSubjectData->author = Auth::guard('admin')->user()->name ??  Auth::guard('admin')->user()->name;
         $storeSubjectData->save();
@@ -65,7 +65,7 @@ class CourseController extends Controller
 
 
     //*Create Semester
-    public function createSemesyter(Request $request){
+    public function createSemester(Request $request){
         $request->validate([
            'add_class' => 'unique:semesters,semester',
         ]);
@@ -88,11 +88,13 @@ class CourseController extends Controller
 
     //* STORE AND UPDATE 
     public function storeUpdateClass(Request $request, $id = null){
+
         $request->validate([
-            'class_name' => "required|unique:semesters,semester,$id",
+            'class_name' => "required|unique:semesters,semester",
         ]);
+
       $classData = Semester::findOrNew($id);
-      $classData->semester = str::slug($request->class_name) ?? $classData->semester;
+      $classData->semester = str($request->class_name)->slug()->upper() ?? $classData->semester;
       $classData->save();
       Alert::success('Success!');
       return redirect()->route('admin.create.class');
@@ -113,5 +115,11 @@ class CourseController extends Controller
         if($id){
             return redirect()->route('admin.create.class');
         }
+    }
+
+
+    //** COURSE LECTURE 
+    public function addLecture() {
+       return view('admin.courses.courseLecture');
     }
 }

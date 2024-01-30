@@ -5,7 +5,7 @@
             <div class="col-12 mx-auto card shadow">
                 <div class="card">
                     <div class="card-header pb-4" >
-                        <h4 class="m-0 p-0">Download PDF</h4>
+                        <span class="m-0 p-0" class="badge badge-dark bg-info">Download PDF</span>
                     </div>
 
                     <div class="card-body">

@@ -109,7 +109,7 @@
                 </div>
             </div>
             @else
-            <h1>record not found!</h1>
+            <h4 class="mt-5 text-center text-danger">No Record Found..!😁</h4>
             @endif
         @endif
        

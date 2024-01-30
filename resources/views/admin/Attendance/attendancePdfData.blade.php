@@ -56,7 +56,7 @@
 			</td>
 			<td>{{ $student->my_attendence_count }}</td>
 			<td>{{ $totalAttendence }}</td>
-			<td>{{ ($student->my_attendence_count / $totalAttendence) * 100 ."%" }}</td>
+			<td>{{ round($student->my_attendence_count / ($totalAttendence == 0 ? 1 : $totalAttendence), 3) * 100 ."%" }}</td>
 		</tr>
 		@endforeach
 		@endif
