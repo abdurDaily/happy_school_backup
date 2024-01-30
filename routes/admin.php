@@ -195,6 +195,7 @@ Route::middleware(['admin:admin'])->group(function (){
     
     
     Route::get('/add-lecture', [CourseController::class, 'addLecture'])->name('add.course.lecture');
+    Route::get('/list-lecture', [CourseController::class, 'listLecture'])->name('list.lecture');
 
 
     Route::get('/create-class', [CourseController::class, 'createClass'])->name('create.class');

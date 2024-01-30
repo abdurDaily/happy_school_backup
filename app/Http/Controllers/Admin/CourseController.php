@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin\Subject;
 use App\Models\Admin\Semester;
 use App\Http\Controllers\Controller;
+use App\Models\Admin\CourseResource;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -120,6 +121,16 @@ class CourseController extends Controller
 
     //** COURSE LECTURE 
     public function addLecture() {
+        
+
        return view('admin.courses.courseLecture');
+    }
+
+    //** LIST LECTURE 
+    public function listLecture(){
+        $resource = CourseResource::with('Semester')->simplePaginate(3);
+        // dd($resourch);
+        return view('admin.courses.courseList',compact('resource'));
+
     }
 }
