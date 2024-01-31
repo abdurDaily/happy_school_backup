@@ -14,51 +14,48 @@
                             @csrf
 
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <label for="subject_name">Subject Name</label>
-                                    <select class="form-control" name="subject_name" id="subject_name">
-                                        <option value="" disabled selected>Select Subject</option>
-                                        @foreach ($allSubject as $data)
-                                            <option value="{{ $data->id }}">{{ $data->subject_name }}</option>
-                                        @endforeach
-                                    </select>
+                                <div class="col-lg-6 mx-auto">
+                                   <div class="row">
+                                        <div class="col-lg-12">
+                                            <label for="subject_name">Subject Name</label>
+                                            <select class="form-control" name="subject_name" id="subject_name">
+                                                <option value="" disabled selected>Select Subject</option>
+                                                @foreach ($allSubject as $data)
+                                                    <option value="{{ $data->id }}">{{ $data->subject_name }}</option>
+                                                @endforeach
+                                            </select>
+        
+                                            @error('subject_name')
+                                                <span class="text-danger">{{ $message }}</span> <br>
+                                            @enderror
+                                        </div>
 
-                                    @error('subject_name')
-                                        <span class="text-danger">{{ $message }}</span> <br>
-                                    @enderror
-                                </div>
 
-                                
-                                <div class="col-lg-6">
-                                    <label for="video_link">Video URL</label>
-                                    <input type="text" name="video_link" id="video_link" placeholder="enter video link" class="form-control">
+                                        <div class="col-lg-12 mt-3">
+                                            <label for="video_title">Video Title</label>
+                                            <input type="text" name="video_title" class="form-control py-3" id="video_title" placeholder="Video Title..">
+                                            @error('video_title')
+                                                <span class="text-danger">{{ $messge }}</span> <br>
+                                            @enderror
+                                        </div>
+                                        
 
-                                    @error('video_link')
-                                    <span class="text-danger">{{ $message }}</span> <br>
-                                @enderror
-                                </div>
-                            </div>
+                                        <div class="col-lg-12 mt-3">
+                                            <label for="video_link">Video URL</label>
+                                            <input type="text" name="video_link" id="video_link" placeholder="enter video link" class="form-control py-3">
+        
+                                            @error('video_link')
+                                            <span class="text-danger">{{ $message }}</span> <br>
+                                            @enderror
+                                        </div>
+                                   </div>
 
-                            <div class="row">
-                                <div class="col-4 mx-auto mt-4  ">
-                                    <div class="document-file text-center mx-auto d-flex flex-column  justify-content-lg-around ">
-                                        <label for="document">
-                                            <img class="img-fluid" style="height:100px; border-radius: 0px; cursor:pointer;
-                                            background: #fff;
-                                            box-shadow:  10px 10px 50px #fff,
-                                                            -10px -10px 50px #f885e982; padding:10px; " src="{{ asset('custom_img/file.png') }}" alt="">
-                                        </label> <br>
-                                        <input style="display: none" accept=".pdf,.doxc,.pptx" type="file" name="document" id="document" placeholder="enter video link" class="form-control">
+
+                                   <div class="submit-btn d-flex justify-content-end mt-4">
+                                      <button class="btn btn-primary w-100 py-3">Submit</button>
                                     </div>
                                 </div>
-                                <P class="text-center">Slelect Documents [PDF,DOCX,PPTX]</P>
                             </div>
-                    
-                            {{-- submit btn --}}
-                            <div class="submit-btn d-flex justify-content-end mt-3">
-                                <button class="btn btn-primary w-100">Submit</button>
-                            </div>
-
                         </form>
                     </div>
                 </div>

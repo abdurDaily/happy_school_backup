@@ -13,30 +13,31 @@
                         <table class="table table-hover table-striped">
                             <tr>
                                 <td>Sn</td>
-                                <td>semester</td>
-                                <td>video URL</td>
-                                <td>documents</td>
+                                <td>Subject</td>
+                                <td>Video Title</td>
+                                <td>Video</td>
                                 <td>Action</td>
                             </tr>
 
                             @forelse ($resource as $key => $data)
                             <tr>
                                 <td>{{ $resource->firstItem() + $key }}</td>
-                                <td>{{ $data->subject_name }}</td>
-                                <td style="width: 35%">
-                                    @foreach ($data->courseResources as $subKey => $sub)
-                                     <a target="_blank" class="badge  {{ $subKey %2 == 0 ? 'bg-primary' : 'bg-dark'}}" href="{{ $sub->video_url }}">Lecture -{{ ++$subKey }}</a>
-                                    @endforeach
+                                <td width="25%">{{ $data->Subject->subject_name }}</td>
+                             
+                                <td width="25%">
+                                    {{ $data->video_title }}
+                                </td>
+                                <td width="25%">
+                                    <a class="badge bg-primary" href="{{ $data->video_url }}">Watch Video</a>
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="{{ route('admin.contact.edit', $data->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="{{ route('admin.contact.delete', $data->id) }}" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></i></a>
+                                    </div>
                                 </td>
 
-                                <td style="width: 35%">
-                                    @foreach ($data->courseResources as $subKey => $sub)
-                                        @if ($sub->documents)
-                                            <a target="_blank" class="badge  {{ $subKey %2 == 0 ? 'bg-primary' : 'bg-dark'}}" href="{{ $sub->documents }}">
-                                                {{ $sub->documents != null ? $sub->documents : '' }} </a>
-                                        @endif
-                                    @endforeach
-                                </td>
+                                
                             </tr>
                             @empty
                                 
