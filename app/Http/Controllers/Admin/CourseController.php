@@ -197,7 +197,7 @@ class CourseController extends Controller
                 $q->where('subject_name','LIKE', "%".$search."%");
             })->orWhere('video_title', 'LIKE', "%{$search}%")
             ->simplePaginate(5);
-            
+
             return view('admin.courses.searchQuery', compact('resource'));
         }
     } 

@@ -14,8 +14,8 @@
                                 @csrf
 
                                 <div class="btn-group">
-                                    <input type="text" name="search_lecture" class="form-control" placeholder="search video title..">
-                                    <button class="btn btn-primary">Search</button>
+                                    <input id="search_query" type="text" name="search_lecture" class="form-control" placeholder="search video title..">
+                                    <button id="search_btn" disabled style="cursor: not-allowed;" class="btn btn-primary">Search</button>
                                 </div>
                             </form>
                         </div>
@@ -64,3 +64,18 @@
 @endsection
 
 
+
+
+@push('additional_js')
+    <script>
+        let searchQuery = document.querySelector('#search_query');
+        let searchBtn = document.querySelector('#search_btn');
+
+        searchQuery.addEventListener('keyup', function(e){
+            let test = e.target.value.length;
+            test > 0 ? searchBtn.disabled = false : searchBtn.disabled = true
+            
+        })
+
+    </script>
+@endpush
