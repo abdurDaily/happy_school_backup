@@ -146,13 +146,11 @@ class CourseController extends Controller
     public function listLecture(){
         
         $resource = CourseResource::with('Subject')->latest()->simplePaginate(3);
-        // $resource = Subject::with('courseResources')->select('id','semester_id','subject_name')->get();
-        // dd($resource);
         return view('admin.courses.courseList',compact('resource'));
     }
 
     //* STORE COURSE 
-    public function storeCourse(Request $request, $id = null){
+    public function storeUpdateLecture(Request $request, $id = null){
 
         $request->validate([
           'subject_name' => 'required',
@@ -161,11 +159,46 @@ class CourseController extends Controller
         ]);
 
             $courseResorceData = CourseResource::findOrNew($id);
-            $courseResorceData->subject_id = $request->subject_name;
-            $courseResorceData->video_title = $request->video_title;
-            $courseResorceData->video_url = $request->video_link;
+            $courseResorceData->subject_id = $request->subject_name ?? $courseResorceData->subject_id;
+            $courseResorceData->video_title = $request->video_title ?? $courseResorceData->video_title;
+            $courseResorceData->video_url = $request->video_link ?? $courseResorceData->video_url;
             $courseResorceData->save();
             Alert::toast('Success Toast','success');;
             return redirect()->route('admin.list.lecture');
     }
+
+
+    //* EDIT COURSE LIST 
+    public function editCourseLecture(Request $request, $id){
+
+    
+        $editCourseData = CourseResource::findOrFail($id);
+        $allSubject = Subject::select('id','semester_id','subject_name')
+                ->with('courseResources')
+                ->get();
+        return view('admin.courses.editCourseLecture', compact('editCourseData','allSubject'));
+    }
+
+
+    //* DELETE COURSE
+    public function deleteLecture($id){
+        CourseResource::findOrFail($id)->delete();
+        Alert::toast('Delete Toast','success');;
+        return redirect()->route('admin.list.lecture');
+    } 
+
+    //* SEARCH LECTURE 
+    public function searchLecture(Request $request){
+        if($request->has('search_lecture')){
+            $search = $request->search_lecture;
+
+            $resource = CourseResource::with('Subject')
+            ->whereHas('Subject', function($q) use($search){
+                $q->where('subject_name','LIKE', "%".$search."%");
+            })->orWhere('video_title', 'LIKE', "%{$search}%")
+            ->simplePaginate(5);
+            
+            return view('admin.courses.searchQuery', compact('resource'));
+        }
+    } 
 }

@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
             AdmitStudentsSeeder::class,
             SemesterSeeder::class,
             SubjectSeeder::class,
+            CourseResourceSeeder::class,
         ]);
     }
 }

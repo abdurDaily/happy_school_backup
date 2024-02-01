@@ -7,11 +7,12 @@
             <div class="col-lg-12">
                 <div class="card shadow ">
                     <div class="card-header">
-                        <h4>Course  Lectures</h4>
+                        <h4>Edit Course  Lectures</h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.store.course.lecture') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('admin.update.course.lecture',$editCourseData->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
 
                             <div class="row">
                                 <div class="col-lg-6 mx-auto">
@@ -21,7 +22,7 @@
                                             <select class="form-control" name="subject_name" id="subject_name">
                                                 <option value="" disabled selected>Select Subject</option>
                                                 @foreach ($allSubject as $data)
-                                                    <option value="{{ $data->id }}">{{ $data->subject_name }}</option>
+                                                    <option {{ $data->id == $editCourseData->id ? 'selected' : ''  }} value="{{ $data->id }}">{{ $data->subject_name }}</option>
                                                 @endforeach
                                             </select>
         
@@ -33,7 +34,7 @@
 
                                         <div class="col-lg-12 mt-3">
                                             <label for="video_title">Video Title</label>
-                                            <input type="text" name="video_title" class="form-control py-3" id="video_title" placeholder="Video Title..">
+                                            <input value="{{ $editCourseData->video_title }}" type="text" name="video_title" class="form-control py-3" id="video_title" placeholder="Video Title..">
                                             @error('video_title')
                                                 <span class="text-danger">{{ $messge }}</span> <br>
                                             @enderror
@@ -42,7 +43,7 @@
 
                                         <div class="col-lg-12 mt-3">
                                             <label for="video_link">Video URL</label>
-                                            <input type="text" name="video_link" id="video_link" placeholder="enter video link" class="form-control py-3">
+                                            <input value="{{ $editCourseData->video_url }}" type="text" name="video_link" id="video_link" placeholder="enter video link" class="form-control py-3">
         
                                             @error('video_link')
                                             <span class="text-danger">{{ $message }}</span> <br>

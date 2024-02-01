@@ -195,8 +195,12 @@ Route::middleware(['admin:admin'])->group(function (){
     
     
     Route::get('/add-lecture', [CourseController::class, 'addLecture'])->name('add.course.lecture');
-    Route::post('/store-course', [CourseController::class, 'storeCourse'])->name('store.course');
+    Route::post('/store-course', [CourseController::class, 'storeUpdateLecture'])->name('store.course.lecture');
+    Route::get('/edit-course-lecture/{id}', [CourseController::class, 'editCourseLecture'])->name('edit.course.lecture');
+    Route::put('/update-course/{id?}', [CourseController::class, 'storeUpdateLecture'])->name('update.course.lecture');
     Route::get('/list-lecture', [CourseController::class, 'listLecture'])->name('list.lecture');
+    Route::get('/delete-lecture/{id}', [CourseController::class, 'deleteLecture'])->name('delete.lecture');
+    Route::post('/search-lecture', [CourseController::class, 'searchLecture'])->name('search.lecture.lecture');
 
 
     Route::get('/create-class', [CourseController::class, 'createClass'])->name('create.class');

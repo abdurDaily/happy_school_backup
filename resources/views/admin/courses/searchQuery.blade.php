@@ -7,18 +7,8 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between ">
-                        <h4>Course  List</h4>
+                        <h4>Search Request</h4>
 
-                        <div class="search">
-                            <form action="{{ route('admin.search.lecture.lecture') }}" method="POST">
-                                @csrf
-
-                                <div class="btn-group">
-                                    <input type="text" name="search_lecture" class="form-control" placeholder="search video title..">
-                                    <button class="btn btn-primary">Search</button>
-                                </div>
-                            </form>
-                        </div>
                     </div>
                     <div class="card-body table-responsive">
                         <table class="table table-hover table-striped">

@@ -18,13 +18,13 @@ class SubjectSeeder extends Seeder
     {
         /**1st semester courses start */
         $user = new Subject();
-        $user->subject_name = 'UREL-1106	Advanced English';
+        $user->subject_name = 'UREL-1106 Advanced English';
         $user->author = 'abdur';
         $user->semester_id = '1';
         $user->save();
         
         $user = new Subject();
-        $user->subject_name = 'UREM-1101	Text of Ethics and Morality';
+        $user->subject_name = 'UREM-1101 Text of Ethics and Morality';
         $user->author = 'abdur';
         $user->semester_id = '1';
         $user->save();
@@ -42,7 +42,7 @@ class SubjectSeeder extends Seeder
         $user->save();
         
         $user = new Subject();
-        $user->subject_name = '	EEE-1104	Electrical Circuit I DC Sessional';
+        $user->subject_name = '	EEE-1104 Electrical Circuit I DC Sessional';
         $user->author = 'abdur';
         $user->semester_id = '1';
         $user->save();
@@ -65,26 +65,26 @@ class SubjectSeeder extends Seeder
 
         
         $user = new Subject();
-        $user->subject_name = '	CSE-1222	Computer Fundamentals & Programming Sessional';
+        $user->subject_name = '	CSE-1222 Computer Fundamentals & Programming Sessional';
         $user->author = 'abdur';
         $user->semester_id = '2';
         $user->save();
         
         
         $user = new Subject();
-        $user->subject_name = '	EEE-1243	Electrical Circuit II AC';
+        $user->subject_name = '	EEE-1243 Electrical Circuit II AC';
         $user->author = 'abdur';
         $user->semester_id = '2';
         $user->save();
         
         $user = new Subject();
-        $user->subject_name = '	EEE-1244	Electrical Circuit II AC Sessional';
+        $user->subject_name = '	EEE-1244 Electrical Circuit II AC Sessional';
         $user->author = 'abdur';
         $user->semester_id = '2';
         $user->save();
         
         $user = new Subject();
-        $user->subject_name = '	EEE-1245	Basic Electronic';
+        $user->subject_name = '	EEE-1245 Basic Electronic';
         $user->author = 'abdur';
         $user->semester_id = '2';
         $user->save();
@@ -96,7 +96,7 @@ class SubjectSeeder extends Seeder
         $user->save();
         
         $user = new Subject();
-        $user->subject_name = '	MATH-1207	Mathematics-II (Geometry and Differential Equations)';
+        $user->subject_name = '	MATH-1207 Mathematics-II (Geometry and Differential Equations)';
         $user->author = 'abdur';
         $user->semester_id = '2';
         $user->save();
@@ -108,13 +108,13 @@ class SubjectSeeder extends Seeder
         $user->save();
         
         $user = new Subject();
-        $user->subject_name = '	PHY-1202	Physics-II Sessional';
+        $user->subject_name = '	PHY-1202 Physics-II Sessional';
         $user->author = 'abdur';
         $user->semester_id = '2';
         $user->save();
         
         $user = new Subject();
-        $user->subject_name = 'URED-1201	Basic Principles of Islam (‘Aqidah+’Ibadah)';
+        $user->subject_name = 'URED-1201 Basic Principles of Islam (‘Aqidah+’Ibadah)';
         $user->author = 'abdur';
         $user->semester_id = '2';
         $user->save();
