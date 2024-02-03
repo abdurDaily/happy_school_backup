@@ -121,13 +121,13 @@
                       </g>
                     </svg>
                   </span>
-                  <span class="app-brand-text demo text-body fw-bolder">Sneat</span>
+                  <span class="app-brand-text demo text-body fw-bolder"></span>
                 </a>
               </div>
               <!-- /Logo -->
-              <h4 class="mb-4">Welcome to Ecommerce! 👋</h4>
+              <h4 class="mb-4"></h4>
 
-              <p class="mb-4">Please sign-in to your <span class="fw-bolder h5 text-primary text-uppercase">Admin Account</span> and start the adventure</p>
+              <p class="mb-4 text-center">please provide your <b style="color:blue; text-transform:uppercase;">credentials</b> to get access to the admin panel.</p>
                 @if(session('error'))
                     <div class="alert alert-danger">
                         {{ session('error') }}
@@ -145,9 +145,9 @@
                 <div class="mb-3 form-password-toggle">
                   <div class="d-flex justify-content-between">
                     <label class="form-label" for="password">Password</label>
-                    <a href="{{ route('admin.forgot_password') }}">
+                    {{-- <a href="{{ route('admin.forgot_password') }}">
                       <small>Forgot Password?</small>
-                    </a>
+                    </a> --}}
                   </div>
                   <div class="input-group input-group-merge">
                     <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" value="password"/>
