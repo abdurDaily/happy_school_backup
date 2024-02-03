@@ -73,8 +73,12 @@
 
         searchQuery.addEventListener('keyup', function(e){
             let test = e.target.value.length;
-            test > 0 ? searchBtn.disabled = false : searchBtn.disabled = true
-            
+            if(test > 0){
+                searchBtn.disabled = false
+                searchBtn.style.cursor = 'pointer'
+            }else{
+                searchBtn.disabled = true
+            }   
         })
 
     </script>

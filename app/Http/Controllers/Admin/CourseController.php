@@ -199,6 +199,8 @@ class CourseController extends Controller
             ->simplePaginate(5);
 
             return view('admin.courses.searchQuery', compact('resource'));
+        }else{
+            echo "no data found!";
         }
     } 
 }
