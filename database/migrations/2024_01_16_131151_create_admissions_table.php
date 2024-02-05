@@ -25,8 +25,8 @@ return new class extends Migration
             $table->string('district');
             $table->string('Upazila');
             $table->string('village');
-            $table->integer('admission_class');
-            $table->integer('admission_class_group');
+            // $table->integer('admission_class');
+            // $table->integer('admission_class_group');
             $table->string('std_img');
             $table->timestamps();
         });

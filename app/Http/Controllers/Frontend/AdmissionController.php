@@ -40,14 +40,13 @@ class AdmissionController extends Controller
         $admissionData->district = $request->district ?? $admissionData->district ;
         $admissionData->upazila = $request->upazila ?? $admissionData->upazila;
         $admissionData->village = $request->village ??  $admissionData->village;
-        $admissionData->admission_class = $request->admission_class ?? $admissionData->admission_clas;
-        $admissionData->admission_class_group = $request->admission_class_group ?? $admissionData->admission_class_group;
+        // $admissionData->admission_class = $request->admission_class ?? $admissionData->admission_clas;
         if ($request->hasFile('std_img')) {
             $admissionData->std_img = env('APP_URL') . 'storage/' . $path;;
         }
         $admissionData->save();
+        Alert::success('success','inserted!');
         return back();
-        Alert::success('inserted!');
 
 
     }

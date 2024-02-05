@@ -27,8 +27,8 @@ class AdmissionSeeder extends Seeder
         $admissionData->district = "feni";
         $admissionData->upazila = "dagonbuyan";
         $admissionData->village = "somwhere";
-        $admissionData->admission_class = "10";
-        $admissionData->admission_class_group = "1";
+        // $admissionData->admission_class = "10";
+        // $admissionData->admission_class_group = "1";
         $admissionData->std_img = asset('custom_img/about.png');
         $admissionData->save();
 
