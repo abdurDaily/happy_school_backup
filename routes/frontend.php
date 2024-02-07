@@ -19,5 +19,4 @@ Route::get('/', [HomeController::class, 'index'])->name('frontend.index');
 // COURCES
 Route::group(['prefix' => 'view'], function () {
     Route::get('/courses', [FrontendCourseController::class, 'index'])->name('courses.index');
-    
 });

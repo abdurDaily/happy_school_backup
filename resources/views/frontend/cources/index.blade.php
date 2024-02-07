@@ -90,45 +90,52 @@
 
             <div class="row filter-layout masonary-layout">
                 <!--Start Single Courses One-->
-                <div class="col-xl-3 col-lg-6 col-md-6 filter-item development business">
-                    <div class="courses-one__single wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1000ms">
-                        <div class="courses-one__single-img">
-                            <img src="{{ asset('frontend_assets/images/resources/courses-v1-img1.jpg') }}" alt=""/>
-                            <div class="overlay-text">
-                                <p>Featured</p>
-                            </div>
-                        </div>
-                        <div class="courses-one__single-content">
-                            <div class="courses-one__single-content-overlay-img">
-                                <img src="frontend_assets/images/resources/courses-v1-overlay-img1.png" alt=""/>
-                            </div>
-                            <h6 class="courses-one__single-content-name">Kevin Martin</h6>
-                            <h4 class="courses-one__single-content-title"><a href="course-details.html">Become a React Developer</a></h4>
-                            <div class="courses-one__single-content-review-box">
-                                <ul class="list-unstyled">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                                <div class="rateing-box">
-                                    <span>(4)</span>
+
+                @forelse ($getAllData as $data)
+                <?php
+                    $video_id = explode("?v=", $data->video_url);
+                    $video_id = $video_id[1];
+                ?>
+                <a target="_blank" href="{{ 'https://www.youtube.com/' . 'embed/' . $video_id }}">
+                        <div class="col-xl-3 col-lg-6 col-md-6 filter-item development business">
+                            <div class="courses-one__single wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1000ms">
+                                <div class="courses-one__single-img">
+                                
+                                    
+
+
+
+                                    <img src="{{ 'http://img.youtube.com/vi/' . $video_id . '/maxresdefault.jpg' }}" alt=""/>
+                                    <div class="overlay-text">
+                                        {{-- <p>Featured</p> --}}
+                                    </div>
+                                </div>
+                                <div class="courses-one__single-content">
+                                    <div class="courses-one__single-content-overlay-img">
+                                        <img src="frontend_assets/images/resources/courses-v1-overlay-img1.png" alt=""/>
+                                    </div>
+                                    <h6 class="courses-one__single-content-name">{{ $data->Subject->author }}</h6>
+                                    <h4 class="courses-one__single-content-title"><a href="course-details.html">{{ $data->Subject->subject_name }}</a></h4>
+
+                                    <p style="font-size: 12px;"> <b>Lecture Title:</b> <span style="text-transform: capitalize;">{{ $data->video_title }}</span></p>
+                                    <ul class="courses-one__single-content-courses-info list-unstyled">
+                                        <li>Uploaded at:</li>
+                                        {{-- <li></li> --}}
+                                        <li>{{ date('d-M-Y', strtotime($data->created_at))  }}</li>
+                                    </ul>
                                 </div>
                             </div>
-                            <p class="courses-one__single-content-price">$30.00</p>
-                            <ul class="courses-one__single-content-courses-info list-unstyled">
-                                <li>2 Lessons</li>
-                                <li>10 Hours</li>
-                                <li>Beginner</li>
-                            </ul>
                         </div>
-                    </div>
-                </div>
+               </a>
+                @empty
+                    <h4>No Data Found!</h4>
+                @endforelse
                 <!--End Single Courses One-->
 
             </div>
+            {{ $getAllData->links()}}
         </div>
+
     </section>
     <!--Courses One End-->
 
@@ -152,4 +159,38 @@
 
     <a href="courses.html#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
 
+
+    @push('frontend_css')
+    <style>
+        .pagination{
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .page-link {
+            background-color: #085da3;
+            color: #fff;
+            margin: 0 10px;
+            width: 120px;
+            text-align: center;
+        }
+        .page-link:hover {
+            background-color: #5F61E6;
+            color: #fff;
+        }
+        .page-item{
+            margin: 0 5px;
+        }
+        .page-item.disabled .page-link {
+            background-color: #5F61E6;
+            color: #fff;
+        }
+        @media (max-width: 575.98px) {
+            table {
+                width: 100%;
+                margin-top: 20px !important;
+            }
+        }
+    </style>
+    @endpush
 @endsection

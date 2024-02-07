@@ -69,8 +69,8 @@
                         @forelse ($allVideoData as $data)
                             <div class="col-md-4 col-lg-3 img-card">
                                 <?php
-                                $video_id = explode('?v=', $data->video_link);
-                                $video_id = $video_id[1];
+                                    $video_id = explode('?v=', $data->video_link);
+                                    $video_id = $video_id[1];
                                 ?>
 
                                 <a class="my-custom-links" data-vbtype="iframe"

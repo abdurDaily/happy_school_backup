@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
+use App\Models\Admin\Course;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Admin\CourseResource;
 
 class CourseController extends Controller
 {
-    //INDEX
+    // COURSE-INDEX
     public function index(){
-        return view('frontend.cources.index');
+        $getAllData = CourseResource::with('Subject')->latest()->simplePaginate(8);
+        return view('frontend.cources.index',compact('getAllData'));
     }
+
+
+    
 }

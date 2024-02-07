@@ -36,6 +36,7 @@
     <!-- template styles -->
     <link rel="stylesheet" href="{{ asset('frontend_assets/css/zilom.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend_assets/css/zilom-responsive.css') }}" />
+    @stack('frontend_css')
 </head>
 
 <body>
@@ -119,8 +120,8 @@
                                         <li class="dropdown">
                                             <a href="{{ route('frontend.courses.index') }}">Courses</a>
                                             <ul>
-                                                <li><a href="courses.html">Courses</a></li>
-                                                <li><a href="course-details.html">Course Details</a></li>
+                                                <li><a href="{{ route('frontend.courses.index') }}">All Courses</a></li>
+                                                {{-- <li><a href="course-details.html">Course Details</a></li> --}}
                                             </ul>
                                         </li>
                                         <li class="dropdown">
