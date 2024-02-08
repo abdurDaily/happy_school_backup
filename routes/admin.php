@@ -115,6 +115,7 @@ Route::middleware(['admin:admin'])->group(function (){
 
 /**__{--ABOUT START--}__ */
 Route::middleware(['admin:admin'])->group(function (){
+    Route::get('/status/{id}', [AboutController::class, 'status'])->name('about.status');
     
     Route::get('/about-gallery', [AboutController::class, 'aboutGallery'])->name('about.galary');
     Route::post('/store-about-gallery', [AboutController::class, 'storeUpdateAboutGallery'])->name('store.about.galary');
@@ -193,6 +194,8 @@ Route::middleware(['admin:admin'])->group(function (){
     Route::post('/create-class', [CourseController::class, 'createSemester'])->name('create.course');
     Route::get('/delete-course/{id}', [CourseController::class, 'deleteCourse'])->name('delete.course');
     
+
+    
     
     Route::get('/add-lecture', [CourseController::class, 'addLecture'])->name('add.course.lecture');
     Route::post('/store-course', [CourseController::class, 'storeUpdateLecture'])->name('store.course.lecture');
@@ -201,6 +204,7 @@ Route::middleware(['admin:admin'])->group(function (){
     Route::get('/list-lecture', [CourseController::class, 'listLecture'])->name('list.lecture');
     Route::get('/delete-lecture/{id}', [CourseController::class, 'deleteLecture'])->name('delete.lecture');
     Route::post('/search-lecture', [CourseController::class, 'searchLecture'])->name('search.lecture.lecture');
+
 
 
     Route::get('/create-class', [CourseController::class, 'createClass'])->name('create.class');

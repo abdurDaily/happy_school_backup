@@ -62,6 +62,8 @@ class FacultystaffController extends Controller
             'employee_designation' => 'required',
             'employee_phone' => 'required',
             'employee_about' => 'required',
+            'fb_link' => 'nullable|url:http,https',
+            'twitter_link' => 'nullable|url:http,https',
             ]);
 
             
@@ -73,13 +75,17 @@ class FacultystaffController extends Controller
         }
 
         $employeeData =  Admin::findOrNew($id);
+
         if ($request->hasFile('employee_image')) {
             $extension = $request->employee_image->extension();
             $uniqName = $request->employee_name . "-" . uniqid() . "." . $extension;
-
             $path = $request->employee_image->storeAs('employee', $uniqName, 'public');
         }
+
         $employeeData->name = $request->name;
+        $employeeData->fb_link = $request->fb_link ;
+        $employeeData->twitter_link = $request->twitter_link ;
+        
         $employeeData->email = $request->email ?? $employeeData->email;
         $employeeData->password = Hash::make($request->password) ?? Hash::make($request->password);
         $employeeData->employee_designation = $request->employee_designation ?? $employeeData->employee_designation;

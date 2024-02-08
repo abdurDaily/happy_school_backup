@@ -19,6 +19,8 @@
                                 <th>Designation</th>
                                 <th>phone</th>
                                 <th>about</th>
+                                <th>Facebook</th>
+                                <th>Twitter</th>
                                 <th>status</th>
                             </tr>
 
@@ -33,6 +35,10 @@
                                     <td>{{ $data->employee_designation }}</td>
                                     <td>{{ $data->employee_phone }}</td>
                                     <td>{{ $data->employee_about }}</td>
+                                    <td>
+                                        <a class="badge bg-primary" href="{{ $data->fb_link }}">Facebook</a>
+                                    </td>
+                                    <td>{{ $data->tritter_link }}</td>
                                     
                                     <td>
                                         <div class="btn-group">

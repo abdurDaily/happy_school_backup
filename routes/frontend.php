@@ -19,4 +19,15 @@ Route::get('/', [HomeController::class, 'index'])->name('frontend.index');
 // COURCES
 Route::group(['prefix' => 'view'], function () {
     Route::get('/courses', [FrontendCourseController::class, 'index'])->name('courses.index');
+    Route::post('/courses-search', [FrontendCourseController::class, 'courseSearch'])->name('courses.search');
+    
+    
+    
+    //* ABOUT
+    Route::get('/about', [FrontendCourseController::class, 'aboutIndex'])->name('about.index');
+    
+
+    //* TEACHERS 
+    Route::get('/teachers', [FrontendCourseController::class, 'teachersIndex'])->name('teacher.index');
+    
 });

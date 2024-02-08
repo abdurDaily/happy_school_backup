@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Admin\About;
 use Illuminate\Http\Request;
 use App\Models\Admin\Aboutgallery;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -24,6 +26,7 @@ class AboutController extends Controller
     public function storeUpdateAboutGallery(Request $request, $id = null)
     {
 
+        
         $request->validate([
             'about_galary_text' => 'required',
         ]);
@@ -44,6 +47,7 @@ class AboutController extends Controller
 
 
         $sboutGalleryData = aboutGallery::findOrNew($id);
+
         $sboutGalleryData->about_galary_text = $request->about_galary_text ?? $sboutGalleryData->about_galary_text;
         $sboutGalleryData->about_institute = $request->about_institute ??  $sboutGalleryData->about_institute = $request->about_institute ;
         if ($request->hasFile('about_galary_img')) {
@@ -76,6 +80,35 @@ class AboutController extends Controller
         Aboutgallery::findOrFail($id)->delete();
         Alert::warning('Deleted!');
         return redirect()->route('admin.list.about.galary');
+
+    }
+
+
+
+
+    //* STATUS 
+    public function status($id){
+
+
+
+
+
+     $statusData = Aboutgallery::findOrFail($id);
+
+     if($statusData->status == 0){
+        DB::table('aboutgalleries')->update(['status' => 0]);
+
+        $statusData->status = 1;
+        $statusData->save();
+        return back();
+
+     }else{
+        
+        $statusData->status = 0;
+        $statusData->save();
+     }
+
+
 
     }
 }

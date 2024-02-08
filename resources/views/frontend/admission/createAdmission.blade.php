@@ -88,7 +88,7 @@
                                         <div class="col-lg-4 mx-auto py-2 px-5">
                                             <label for="std_img" style="cursor:pointer;">
                                                 <span>Select Image</span>
-                                                <img class="display_img" style="width: 300px;" src="{{ asset('custom_img/about.png') }}" alt="">
+                                                <img class="display_img" style="width:100%;" src="{{ asset('custom_img/student-image.jpg') }}" alt="">
                                             </label>
                                             <input class="input_img" type="file" name="std_img" accept=".jpg,.png,.jpeg" id="std_img" style="display: none;">        
                                         </div>

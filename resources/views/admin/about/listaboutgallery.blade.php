@@ -15,6 +15,7 @@
                                     <th>Gallery Text</th>
                                     <th>About Text</th>
                                     <th>Images</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
 
@@ -25,6 +26,11 @@
                                         <td>{!! Str::limit($data->about_institute, 100, '......') !!}</td>
                                         <td>
                                             <img style="width: 100px" src="{{ $data->about_galary_img }}" alt="">
+                                        </td>
+                                        <td align="center" valign="middle">
+                                           <a href="{{ route('admin.about.status', $data->id) }}">
+                                              <i class="{{ $data->status == 0 ? 'fa-regular' : 'fa-solid' }} fa-star"></i>
+                                           </a>
                                         </td>
                                         <td>
                                             <div class="btn-group">

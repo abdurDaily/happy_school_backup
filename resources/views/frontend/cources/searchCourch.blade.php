@@ -1,34 +1,5 @@
 @extends('frontend.layout')
 @section('frontend_layout')
-    @push('search')
-        <div class="main-menu__right-cart-search">
-            <div class="main-menu__right-cart-box">
-                <a href="index.html#"><span class="icon-shopping-cart"></span></a>
-            </div>
-            <div class="main-menu__right-search-box">
-                <a href="index.html#" class="thm-btn search-toggler">Search</a>
-            </div>
-        </div>
-    @endpush
-
-    @push('search_input')
-        <div class="search-popup">
-            <div class="search-popup__overlay search-toggler"></div>
-            <!-- /.search-popup__overlay -->
-            <div class="search-popup__content">
-                <form action="{{ route('frontend.courses.search') }}" method="post">
-                    @csrf
-                    <label for="search" class="sr-only">search here</label><!-- /.sr-only -->
-                    <input name="course_search" type="text" id="search" placeholder="Search Here..." />
-                    <button type="submit" aria-label="search submit" class="thm-btn2">
-                        <i class="fa fa-search" aria-hidden="true"></i>
-                    </button>
-                </form>
-            </div>
-            <!-- /.search-popup__content -->
-        </div>
-    @endpush
-
 
 
     <div class="preloader">
@@ -93,7 +64,7 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                         <div class="courses-one--courses__menu-box">
                             <ul class="project-filter clearfix post-filter has-dynamic-filters-counter list-unstyled">
-                               
+                                
                             </ul>
                         </div>
                     </div>
@@ -114,10 +85,6 @@
                         <div class="col-xl-3 col-lg-6 col-md-6 filter-item development business">
                             <div class="courses-one__single wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1000ms">
                                 <div class="courses-one__single-img">
-                                
-                                    
-
-
 
                                     <img src="{{ 'http://img.youtube.com/vi/' . $video_id . '/maxresdefault.jpg' }}" alt=""/>
                                     <div class="overlay-text">
@@ -142,12 +109,14 @@
                         </div>
                </a>
                 @empty
-                    <h4>No Data Found!</h4>
+                    <div class="filter-item text-center">
+                        <h4 class="mt-5 text-danger">No Relevent Data Found..!</h4>
+                    </div>
                 @endforelse
                 <!--End Single Courses One-->
 
             </div>
-            {{ $getAllData->links()}}
+
         </div>
 
     </section>

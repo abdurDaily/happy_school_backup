@@ -104,19 +104,9 @@
                                     <ul class="main-menu__list">
                                         <li class="dropdown current">
                                             <a href="{{ route('frontend.frontend.index') }}">Home</a>
-                                            <ul>
-                                                <li><a href="index.html">Home One</a></li>
-                                                <li><a href="index-2.html">Home Two</a></li>
-                                                <li class="dropdown">
-                                                    <a href="index.html#">Header Styles</a>
-                                                    <ul>
-                                                        <li><a href="index.html">Header One</a></li>
-                                                        <li><a href="index-2.html">Header Two</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
+                                            
                                         </li>
-                                        <li><a href="about.html">About</a></li>
+                                        <li><a href="{{ route('frontend.about.index') }}">About</a></li>
                                         <li class="dropdown">
                                             <a href="{{ route('frontend.courses.index') }}">Courses</a>
                                             <ul>
@@ -125,11 +115,8 @@
                                             </ul>
                                         </li>
                                         <li class="dropdown">
-                                            <a href="index.html#"> Teachers</a>
-                                            <ul>
-                                                <li><a href="teachers-1.html"> Teachers</a></li>
-                                                <li><a href="teachers-2.html">Become Teacher</a></li>
-                                            </ul>
+                                            <a href="{{ route('frontend.teacher.index') }}"> Teachers</a>
+                                            
                                         </li>
                                         <li class="dropdown">
                                             <a href="index.html#">News</a>
@@ -223,7 +210,7 @@
                                 <ul class="footer-widget__links-list list-unstyled">
                                     <li><a href="about.html">About Us</a></li>
                                     <li><a href="index.html#">Overview</a></li>
-                                    <li><a href="teachers-1.html">Teachers</a></li>
+                                    <li><a href="{{ route('frontend.teacher.index') }}">Teachers</a></li>
                                     <li><a href="index.html#">Join Us</a></li>
                                     <li><a href="news.html">Our News</a></li>
                                 </ul>
@@ -317,20 +304,7 @@
 
 
 
-    <div class="search-popup">
-        <div class="search-popup__overlay search-toggler"></div>
-        <!-- /.search-popup__overlay -->
-        <div class="search-popup__content">
-            <form action="index.html#">
-                <label for="search" class="sr-only">search here</label><!-- /.sr-only -->
-                <input type="text" id="search" placeholder="Search Here..." />
-                <button type="submit" aria-label="search submit" class="thm-btn2">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                </button>
-            </form>
-        </div>
-        <!-- /.search-popup__content -->
-    </div>
+    @stack('search_input')
     <!-- /.search-popup -->
 
 

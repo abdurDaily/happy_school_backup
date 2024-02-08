@@ -78,6 +78,22 @@
                                                     </select>
                                               </div>
 
+
+                                              <div class="col-lg-6 my-2">
+                                                <label for="fb_link">Facebook Profile Link</label>
+                                                <input type="text" value="{{ $editData->fb_link }}" name="fb_link" id="fb_link" class="form-control" placeholder="Enter Your FB link..">
+                                                @error('fb_link')
+                                                    <span class="text-danger">{{ $message }}</span> <br>
+                                                @enderror
+                                          </div>
+
+                                          <div class="col-lg-6 my-2">
+                                                <label for="twitter_link">Twitter Profile Link</label>
+                                                <input type="text" value="{{ $editData->twitter_link }}" name="twitter_link" id="twitter_link" class="form-control" placeholder="Enter Your Twitter link..">
+                                                @error('twitter_link')
+                                                  <span class="text-danger">{{ $message }}</span> <br>
+                                                @enderror
+                                          </div>
                                                 
 
                                                 

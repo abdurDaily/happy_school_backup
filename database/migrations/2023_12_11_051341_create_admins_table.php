@@ -19,11 +19,13 @@ return new class extends Migration
             $table->string('password');
             // $table->string('profile')->nullable();
 
-
             $table->string('employee_designation');
             $table->string('employee_phone');
             $table->string('employee_image');
             $table->longText('employee_about');
+            
+            $table->string('fb_link')->nullable();
+            $table->string('twitter_link')->nullable();
 
             $table->rememberToken();
             $table->timestamps();

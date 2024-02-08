@@ -16,6 +16,7 @@ return new class extends Migration
             $table->longText('about_galary_text');
             $table->longText('about_institute')->nullable();
             $table->string('about_galary_img');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

@@ -65,7 +65,6 @@
                                                 </div>
 
 
-
                                                 <div class="col-lg-6">
                                                       <label for="employee_role">Role Assign</label>
                                                       
@@ -77,6 +76,26 @@
                                                         @endforeach
                                                       </select>
                                                 </div>
+
+
+                                                <div class="col-lg-6 my-2">
+                                                      <label for="fb_link">Facebook Profile Link</label>
+                                                      <input type="text" name="fb_link" id="fb_link" class="form-control" placeholder="Enter Your FB link..">
+                                                      @error('fb_link')
+                                                          <span class="text-danger">{{ $message }}</span> <br>
+                                                      @enderror
+                                                </div>
+
+                                                <div class="col-lg-6 my-2">
+                                                      <label for="twitter_link">Twitter Profile Link</label>
+                                                      <input type="text" name="twitter_link" id="twitter_link" class="form-control" placeholder="Enter Your Twitter link..">
+                                                      @error('twitter_link')
+                                                        <span class="text-danger">{{ $message }}</span> <br>
+                                                      @enderror
+                                                </div>
+
+
+                                                
 
 
                                                 
@@ -96,9 +115,9 @@
                                             <label for="employee_image">
                                                 <img  style="max-width: 250px; height:250px; object-fit: cover;  cursor:pointer; padding:0px;
                                                border-radius: 33px;
-background: linear-gradient(225deg, #f0f0f0, #cacaca);
-box-shadow:  -20px 20px 71px #c6c5c56f,
-             20px -20px 71px #ffffff;
+                                                    background: linear-gradient(225deg, #f0f0f0, #cacaca);
+                                                    box-shadow:  -20px 20px 71px #c6c5c56f,
+                                                                20px -20px 71px #ffffff;"
                                                
                                                class="profileImagePicture" src="{{ asset('custom_img/placeholder_image.png') }}" alt="">
                                             </label>

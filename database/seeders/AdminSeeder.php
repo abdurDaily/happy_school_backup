@@ -15,13 +15,14 @@ class AdminSeeder extends Seeder
     public function run(): void
     {
         $admin = new Admin();
-        $admin->name = "Admin";
+        $admin->name = "Md. Ibrahim";
         $admin->email = "abdur@gmail.com";
         $admin->password = Hash::make('password');
-        $admin->employee_designation = "pera😢";
-        $admin->employee_phone = "0123456789";
+        $admin->employee_designation = "Assistant Professor & Chairman";
+        $admin->employee_phone = "01817750772";
         $admin->employee_about = "ki r bolbo? obstha kharap!";
-        $admin->employee_image = asset('custom_img/img_placeholder.jpg');
+        $admin->fb_link = "https://www.facebook.com/ibrahim.rupom";
+        $admin->employee_image = asset('custom_img/ibrahim.png');
         $admin->save();
     }
 }
