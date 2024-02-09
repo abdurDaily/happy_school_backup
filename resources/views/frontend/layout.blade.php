@@ -54,7 +54,7 @@
                     <div class="main-header--one__top-inner clearfix">
                         <div class="main-header--one__top-left">
                             <div class="main-header--one__top-logo">
-                                <a href="index.html"><img src="{{ asset('frontend_assets/images/resources/logo-1.png') }}" alt="" /></a>
+                                <a href="{{ route('frontend.frontend.index') }}"><img style="width:40px;" src="{{ asset('custom_img/ete.png') }}" alt="" /></a>
                             </div>
                         </div>
 
@@ -119,13 +119,13 @@
                                             
                                         </li>
                                         <li class="dropdown">
-                                            <a href="index.html#">News</a>
-                                            <ul>
+                                            <a href="{{ route('frontend.event.index') }}">Events</a>
+                                            {{-- <ul>
                                                 <li><a href="news.html">News</a></li>
                                                 <li><a href="news-details.html">News Details</a></li>
-                                            </ul>
+                                            </ul> --}}
                                         </li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="{{ route('frontend.contact.index') }}">Contact</a></li>
                                     </ul>
                                 </div>
 

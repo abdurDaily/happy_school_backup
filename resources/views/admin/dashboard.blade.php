@@ -23,7 +23,7 @@
                                     {{ Auth::guard('admin')->user()->name }} 🎉</h5>
                                 <p class="mb-4">{{ Auth::guard('admin')->user()->employee_about }}</p>
 
-                                <a href="" class="btn btn-sm btn-outline-primary">View Website</a>
+                                <a href="{{ route('frontend.frontend.index') }}" class="btn btn-sm btn-outline-primary">View Website</a>
                             </div>
                         </div>
                         <div class="col-sm-5 text-center text-sm-left">

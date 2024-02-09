@@ -29,5 +29,14 @@ Route::group(['prefix' => 'view'], function () {
 
     //* TEACHERS 
     Route::get('/teachers', [FrontendCourseController::class, 'teachersIndex'])->name('teacher.index');
+
+
+    //* EVENT'S 
+    Route::get('/events', [HomeController::class,  'eventIndex'])->name('event.index');
+
     
+    //* CONTACT 
+    Route::get('/contact', [HomeController::class,  'contactIndex'])->name('contact.index');
+
+
 });

@@ -32,7 +32,7 @@
                                 {{ $aboutData->about_institute }}
                             </p>
                             <div class="about-two__text-box-btn">
-                                <a href="about.html" class="thm-btn">view all courses</a>
+                                <a href="{{ route('frontend.courses.index') }}" class="thm-btn">view all courses</a>
                             </div>
                         </div>
                     </div>
