@@ -4,7 +4,7 @@
 
 
 
-
+@if (auth('admin')->user()->can(['Administrator']))
 
 
 
@@ -284,7 +284,7 @@
 
     </div>
 
-
+    @endif
 
 
 

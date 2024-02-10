@@ -335,13 +335,9 @@
 
                             </ul>
                           </li>
-            @endif
 
 
-            
-
-
-            {{-- CONTACT START --}}
+                          {{-- CONTACT START --}}
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i style="font-size: 18px" class="fa-solid fa-location-dot"></i> &nbsp; &nbsp;
@@ -440,6 +436,13 @@
                   
               </ul>
             </li>
+            @endif
+
+
+            
+
+
+            
 
             
 

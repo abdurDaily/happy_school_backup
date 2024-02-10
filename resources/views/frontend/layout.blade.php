@@ -111,7 +111,14 @@
                                             <a href="{{ route('frontend.courses.index') }}">Courses</a>
                                             <ul>
                                                 <li><a href="{{ route('frontend.courses.index') }}">All Courses</a></li>
-                                                {{-- <li><a href="course-details.html">Course Details</a></li> --}}
+                                    
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="{{ route('frontend.image.index') }}">Galary</a>
+                                            <ul>
+                                                <li><a href="{{ route('frontend.image.index') }}">Images</a></li>
+                                                <li><a href="{{ route('frontend.image.index') }}">Documentary</a></li>
                                             </ul>
                                         </li>
                                         <li class="dropdown">

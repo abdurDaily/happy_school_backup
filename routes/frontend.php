@@ -37,6 +37,10 @@ Route::group(['prefix' => 'view'], function () {
     
     //* CONTACT 
     Route::get('/contact', [HomeController::class,  'contactIndex'])->name('contact.index');
-
+    
+    
+    //* IMAGES 
+    Route::get('/galary/images', [HomeController::class,  'imageIndex'])->name('image.index');
+    Route::get('/galary/video', [HomeController::class,  'videoIndex'])->name('video.index');
 
 });
