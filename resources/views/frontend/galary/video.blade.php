@@ -7,7 +7,7 @@
                     <div class="col-lg-2">
                         <div class="shadow">
                             {{ dd($data->video_link) }}
-                            <img class="img-fluid" src="{{  }}" alt="">
+                            {{-- <img class="img-fluid" src="{{  }}" alt=""> --}}
                         </div>
                     </div>
                 @empty
