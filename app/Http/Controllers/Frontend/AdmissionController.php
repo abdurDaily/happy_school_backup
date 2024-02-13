@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
-use App\Models\Frontend\Admission;
 use Illuminate\Http\Request;
+use App\Models\Frontend\Admission;
+use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
+
 
 class AdmissionController extends Controller
 {
@@ -17,6 +18,27 @@ class AdmissionController extends Controller
 
     // STORE AND UPDATE ADMISSION 
     public function StoreAndUpdateAdmission(Request $request, $id=null){
+
+
+       
+
+        
+
+        $request->validate([
+           'std_name' => "required",
+           'father_name' => "required",
+           'mother_name' => "required",
+           'contact_no' => "required",
+           'std_id' => "required",
+           'email' => "required",
+        ]);
+
+        if($request->routeIs('frontend.store.admission')){
+            $request->validate([
+                'std_img' => 'required|mimes:png,jpg,jpeg,webp',
+            ]);
+        }
+        
 
 
         if ($request->hasFile('std_img')) {
@@ -32,22 +54,14 @@ class AdmissionController extends Controller
         $admissionData->father_name = $request->father_name ?? $admissionData->father_name;
         $admissionData->mother_name = $request->mother_name ?? $admissionData->mother_name;
         $admissionData->contact_no = $request->contact_no ??  $admissionData->contact_no;
-        $admissionData->alter_contact_no = $request->alter_contact_no ??  $admissionData->alter_contact_no;
+        $admissionData->std_id = $request->std_id ??  $admissionData->std_id;
         $admissionData->email = $request->email ?? $admissionData->email;
-        $admissionData->present_address = $request->present_address ?? $admissionData->present_address;
-        $admissionData->birth_date = $request->birth_date ??  $admissionData->birth_date;
-        $admissionData->division = $request->division ?? $admissionData->division;
-        $admissionData->district = $request->district ?? $admissionData->district ;
-        $admissionData->upazila = $request->upazila ?? $admissionData->upazila;
-        $admissionData->village = $request->village ??  $admissionData->village;
-        // $admissionData->admission_class = $request->admission_class ?? $admissionData->admission_clas;
-        if ($request->hasFile('std_img')) {
-            $admissionData->std_img = env('APP_URL') . 'storage/' . $path;;
-        }
+            if ($request->hasFile('std_img')) {
+                $admissionData->std_img = env('APP_URL') . 'storage/' . $path;;
+            }
         $admissionData->save();
-        Alert::success('success','inserted!');
-        return back();
-
-
+        
+        Alert::success('Success Title', 'Success Message');
+        return redirect()->route('frontend.frontend.index');
     }
 }

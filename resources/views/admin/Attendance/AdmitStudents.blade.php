@@ -15,13 +15,29 @@
                         @csrf 
 
                         <label for="std_name" class="">Insert Student Name</label>
-                        <input id="std_name" name="std_name" type="text" class="form-control" placeholder="Student Name">
+                        <select name="std_name" id="std_name" class="form-control">
+                            <option value="">Select One</option>
+                            @foreach($allRegistedStd as $stdData)
+                              <option value="{{ $stdData->id }}">{{ $stdData->std_name }}</option>
+                            @endforeach
+                        </select>
                         @error('std_name')
                            <strong class="text-danger">{{ $message }}</strong> <br>
                         @enderror
 
+
+
+
+
+
+
                         <label for="std_id" class="mt-3">Insert Student Name</label>
-                        <input id="std_id" name="std_id" type="text" class="form-control" placeholder="Student ID">
+                        <select name="std_id" id="std_id" class="form-control">
+                            <option value="">Select One</option>
+                            @foreach($allRegistedStd as $stdData)
+                              <option value="{{ $stdData->id }}">{{ $stdData->std_id }}</option>
+                            @endforeach
+                        </select>
                         @error('std_id')
                            <strong class="text-danger">{{ $message }}</strong> <br>
                         @enderror
@@ -86,7 +102,8 @@
     
     $(document).ready(function() {
     $('#batch_no').select2();
-    $('#subject_id').select2();
+    $('#std_name').select2();
+    $('#std_id').select2();
 });
 
 </script>

@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\AttendanceStore;
 use App\Models\Admin\Semester;
+use App\Models\Frontend\Admission;
 use Illuminate\Validation\Rules\Exists;
 use SebastianBergmann\CodeCoverage\Report\Xml\Unit;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -73,7 +74,8 @@ class AttendanceController extends Controller
     public function admitStudent()
     {
         $batchNo = BatchNumber::all();
-        return view('Admin.Attendance.AdmitStudents', compact('batchNo'));
+        $allRegistedStd = Admission::select('id','std_name','std_id')->get();
+        return view('Admin.Attendance.AdmitStudents', compact('batchNo','allRegistedStd'));
     }
 
     //* ADMIT STUDENT IN DATABASE 

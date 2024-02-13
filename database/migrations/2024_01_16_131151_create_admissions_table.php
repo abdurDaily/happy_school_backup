@@ -17,16 +17,8 @@ return new class extends Migration
             $table->string('father_name');
             $table->string('mother_name');
             $table->string('contact_no');
-            $table->string('alter_contact_no')->nullable();
             $table->string('email');
-            $table->string('present_address');
-            $table->date('birth_date');
-            $table->string('division');
-            $table->string('district');
-            $table->string('Upazila');
-            $table->string('village');
-            // $table->integer('admission_class');
-            // $table->integer('admission_class_group');
+            $table->string('std_id');
             $table->string('std_img');
             $table->timestamps();
         });

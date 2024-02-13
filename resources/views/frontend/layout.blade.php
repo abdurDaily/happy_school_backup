@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home One || Zilom || Responsive HTML5 Template.</title>
+    <title>ETE Dept.</title>
     <!-- favicons Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="frontend_assets/images/favicons/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="frontend_assets/images/favicons/favicon-32x32.png" />
@@ -41,9 +41,9 @@
 
 <body>
 
-    <div class="preloader">
+    {{-- <div class="preloader">
         <img class="preloader__image" width="60" src="{{ asset('frontend_assets/images/loader.png') }}" alt="" />
-    </div>
+    </div> --}}
 
     <!-- /.preloader -->
     <div class="page-wrapper">

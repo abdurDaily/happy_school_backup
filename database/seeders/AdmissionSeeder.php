@@ -19,16 +19,9 @@ class AdmissionSeeder extends Seeder
         $admissionData->father_name = "abc";
         $admissionData->mother_name = "abc";
         $admissionData->contact_no = "0123456789";
-        $admissionData->alter_contact_no = "0123456789";
+
         $admissionData->email = "abc@gmail.com";
-        $admissionData->present_address = "chittagong";
-        $admissionData->birth_date = "2000-02-02";
-        $admissionData->division = "chittagong";
-        $admissionData->district = "feni";
-        $admissionData->upazila = "dagonbuyan";
-        $admissionData->village = "somwhere";
-        // $admissionData->admission_class = "10";
-        // $admissionData->admission_class_group = "1";
+        $admissionData->std_id = "T-191060";
         $admissionData->std_img = asset('custom_img/about.png');
         $admissionData->save();
 
