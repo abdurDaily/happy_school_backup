@@ -323,4 +323,49 @@ class AttendanceController extends Controller
         Alert::warning('Deleted Successfully');
         return redirect()->route('admited.student');
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ATTENDANCE RECORDS
+    public function attendanceRecords(Request $req){
+        $attendanceProvide = Attendance::where('batch_number_id', $req->batch_id)->
+        where('subject_id',$req->subject_id)->
+        with(['attendanceStore' => function($query){
+            $query->select('id','admit_student_id','attendance_id');
+        }])->get()->groupBy('date');
+       
+        
+        $students = AdmitStudent::where('batch_number', $req->batch_id)->get();
+
+
+
+        $batchData = BatchNumber::select('id','batch_no')->get();
+        $subjectId = Subject::select('id','subject_name','semester_id')->get();
+        return view('admin.Attendance.allRecordsByDate', compact('students', 'attendanceProvide','subjectId','batchData'));
+    }
+
+
 }

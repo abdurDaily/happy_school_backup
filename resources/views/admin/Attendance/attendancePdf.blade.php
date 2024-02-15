@@ -16,7 +16,7 @@
                                 <div class="col-lg-6">
                                     <label for="subject_id" class="mt-3">Select a Batch No</label>
                                     <select required name="subject_id" id="subject_id" class="form-control">
-                                        <option  value="" selected disabled>Select a batch</option>
+                                        <option  value="" selected disabled>Select Subject</option>
                                         @foreach ($subjectId as $subjectData)
                                             <option value="{{ $subjectData->id }}">{{ $subjectData->subject_name }}</option>
                                         @endforeach

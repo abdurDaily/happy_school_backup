@@ -30,4 +30,15 @@ Route::middleware('check')->prefix('/attendance')->group(function(){
     Route::get('/edit-admited-students/{id}', [AttendanceController::class, 'editAdmitedStudents'])->name('edit.admited.student');
     Route::put('/update-student-info', [AttendanceController::class, 'updateStdInfo'])->name('update.std.info');
     Route::get('/delete-student/{id}', [AttendanceController::class, 'deleteStudent'])->name('delete.student');
+    
+    
+    
+    
+    
+    Route::get('/attendance-records', [AttendanceController::class, 'attendanceRecords'])->name('atteandance.records');
+    Route::post('/attendance-records', [AttendanceController::class, 'attendanceRecords'])->name('atteandance.records.query');
+    // Route::post('/attendance-records', [AttendanceController::class, 'attendanceRecordsQuery'])->name('atteandance.records.query');
+
+
+
   })->middleware('check');

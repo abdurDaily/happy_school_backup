@@ -274,6 +274,14 @@
 
 
                                 <li class="menu-item">
+                                  <a href="{{ route('atteandance.records') }}" class="menu-link">
+                                    <div data-i18n="Pricing">All Records</div>
+                                  </a>
+                                </li>
+
+
+
+                                <li class="menu-item">
                                   <a href="{{ route('attendance.pdf') }}" class="menu-link">
                                     <div data-i18n="Pricing">PDF download</div>
                                   </a>
