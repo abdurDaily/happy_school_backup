@@ -18,7 +18,7 @@
                         <select name="std_name" id="std_name" class="form-control">
                             <option value="">Select One</option>
                             @foreach($allRegistedStd as $stdData)
-                              <option value="{{ $stdData->id }}">{{ $stdData->std_name }}</option>
+                              <option value="{{ $stdData->std_name }}">{{ $stdData->std_name }}</option>
                             @endforeach
                         </select>
                         @error('std_name')
@@ -35,7 +35,7 @@
                         <select name="std_id" id="std_id" class="form-control">
                             <option value="">Select One</option>
                             @foreach($allRegistedStd as $stdData)
-                              <option value="{{ $stdData->id }}">{{ $stdData->std_id }}</option>
+                              <option value="{{ $stdData->std_id }}">{{ $stdData->std_id }}</option>
                             @endforeach
                         </select>
                         @error('std_id')
