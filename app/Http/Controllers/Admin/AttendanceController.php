@@ -29,7 +29,7 @@ class AttendanceController extends Controller
     public function addNewBatch()
     {
         $batchNumber = BatchNumber::select('id', 'batch_no')->latest()->get();
-        return view('Admin.Attendance.addNewBatch', compact('batchNumber'));
+        return view('admin.Attendance.addNewBatch', compact('batchNumber'));
     }
 
 
@@ -75,7 +75,7 @@ class AttendanceController extends Controller
     {
         $batchNo = BatchNumber::all();
         $allRegistedStd = Admission::select('id','std_name','std_id')->get();
-        return view('Admin.Attendance.AdmitStudents', compact('batchNo','allRegistedStd'));
+        return view('admin.Attendance.AdmitStudents', compact('batchNo','allRegistedStd'));
     }
 
     //* ADMIT STUDENT IN DATABASE 
@@ -100,7 +100,7 @@ class AttendanceController extends Controller
     {
         $result = BatchNumber::all();
         $subjectId = Subject::all();
-        return view('Admin.Attendance.present', compact('result', 'subjectId'));
+        return view('admin.Attendance.present', compact('result', 'subjectId'));
     }
 
 
@@ -123,7 +123,7 @@ class AttendanceController extends Controller
         $students = AdmitStudent::where('batch_number', $request->batch_id)->get();
         $atteances = $query->with('attendanceStore')->first();
         $attendedStudetID = $atteances ? $atteances->attendanceStore->pluck('admit_student_id')->toArray() : null;
-        return view('Admin.Attendance.record', compact('atteances', 'subjectId', 'batchId', 'students', 'attendedStudetID'));
+        return view('admin.Attendance.record', compact('atteances', 'subjectId', 'batchId', 'students', 'attendedStudetID'));
        
     }
 
@@ -132,7 +132,7 @@ class AttendanceController extends Controller
         $result = BatchNumber::all();
         $subjectId = Subject::all();
         $studentInfo = AdmitStudent::where('batch_number', $request->batch_id)->get();
-        return view('Admin.Attendance.present', compact('studentInfo', 'result', 'subjectId'));
+        return view('admin.Attendance.present', compact('studentInfo', 'result', 'subjectId'));
     }
 
 
@@ -183,7 +183,7 @@ class AttendanceController extends Controller
         $students = AdmitStudent::where('batch_number', $request->batch_id)->get();
         $atteances = $query->with('attendanceStore')->first();
         $attendedStudetID = $atteances->attendanceStore->pluck('admit_student_id')->toArray();
-        return view('Admin.Attendance.record', compact('subjectId', 'batchId', 'students', 'attendedStudetID'));
+        return view('admin.Attendance.record', compact('subjectId', 'batchId', 'students', 'attendedStudetID'));
         
     }
 
@@ -213,9 +213,9 @@ class AttendanceController extends Controller
 
             
             // dd($students);
-            return view('Admin.Attendance.allRecord', compact('students', 'totalAttendence', 'subjectId', 'batchId'));
+            return view('admin.Attendance.allRecord', compact('students', 'totalAttendence', 'subjectId', 'batchId'));
         }
-        return view('Admin.Attendance.allRecord', compact('subjectId', 'batchId'));
+        return view('admin.Attendance.allRecord', compact('subjectId', 'batchId'));
         
     }
 
@@ -225,7 +225,7 @@ class AttendanceController extends Controller
     {
         $batchId = BatchNumber::all();
         $subjectId = Subject::all();
-        return view('Admin.Attendance.attendancePdf', compact('batchId', 'subjectId'));
+        return view('admin.Attendance.attendancePdf', compact('batchId', 'subjectId'));
     }
 
     public function attendancePdfData(Request $request)

@@ -133,6 +133,8 @@
                                             </ul> --}}
                                         </li>
                                         <li><a href="{{ route('frontend.contact.index') }}">Contact</a></li>
+                                        <li class="d-md-none"><a href="{{ route('admin.login') }}">Login</a></li>
+                                        <li class="d-md-none"><a href="{{ route('frontend.create.admission') }}">Registration</a></li>
                                     </ul>
                                 </div>
 
