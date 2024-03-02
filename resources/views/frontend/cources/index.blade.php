@@ -2,9 +2,9 @@
 @section('frontend_layout')
     @push('search')
         <div class="main-menu__right-cart-search">
-            <div class="main-menu__right-cart-box">
+            {{-- <div class="main-menu__right-cart-box">
                 <a href="index.html#"><span class="icon-shopping-cart"></span></a>
-            </div>
+            </div> --}}
             <div class="main-menu__right-search-box">
                 <a href="index.html#" class="thm-btn search-toggler">Search</a>
             </div>

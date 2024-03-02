@@ -20,7 +20,7 @@ class AdminSeeder extends Seeder
         $admin->password = Hash::make('password');
         $admin->employee_designation = "Assistant Professor & Chairman";
         $admin->employee_phone = "01817750772";
-        $admin->employee_about = "ki r bolbo? obstha kharap!";
+        $admin->employee_about = "Admin Dashboard";
         $admin->fb_link = "https://www.facebook.com/ibrahim.rupom";
         $admin->employee_image = asset('custom_img/ibrahim.png');
         $admin->save();

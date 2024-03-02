@@ -338,7 +338,7 @@
 
 
             {{-- CATEGORY START --}}
-            <li class="menu-item">
+            {{-- <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i style="font-size: 18px;" class="fa-solid fa-address-card"></i> &nbsp;&nbsp;
                 <div data-i18n="Front Pages">Category</div>
@@ -351,7 +351,7 @@
                     </a>
                   </li>
               </ul>
-            </li>
+            </li> --}}
 
 
             {{-- COURSE'S --}}
@@ -458,7 +458,7 @@
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
                     <li>
-                      <a class="dropdown-item" href="{{ route('admin.profile') }}">
+                      <a class="dropdown-item" href="#">
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
@@ -475,13 +475,13 @@
                     <li>
                       <div class="dropdown-divider"></div>
                     </li>
-                    <li>
+                    {{-- <li>
                       <a class="dropdown-item" href="{{ route('admin.profile') }}">
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">My Profile</span>
                       </a>
-                    </li>
-                    <li>
+                    </li> --}}
+                    {{-- <li>
                       <a class="dropdown-item" href="#">
                         <span class="d-flex align-items-center align-middle">
                           <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
@@ -489,7 +489,7 @@
                           <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
                         </span>
                       </a>
-                    </li>
+                    </li> --}}
                     <li>
                       <div class="dropdown-divider"></div>
                     </li>

@@ -45,7 +45,7 @@
                                 {{-- <li><a href="news.html#"><span class="icon-chat"></span> Comments</a></li> --}}
                             </ul>
                         </div>
-                        <h2 class="blog-one__single-content-title"><a href="news-details.html">{{ Str::limit($data->event_title, 50, '...') }}</a></h2>
+                        <h2 class="blog-one__single-content-title"><a href="#">{{ Str::limit($data->event_title, 50, '...') }}</a></h2>
                         <p class="blog-one__single-content-text">{{Str::limit($data->event_detail, 100)}}</p>
                     </div>
                 </div>

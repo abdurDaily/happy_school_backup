@@ -21,7 +21,7 @@
                         <div class="about-two__title-box">
                             <div class="section-title">
                                 <span class="section-title__tagline">About Our Department</span>
-                                <h2 class="section-title__title">{{ $aboutData->about_galary_text }}</h2>
+                                <h2 class="section-title__title">{!! $aboutData->about_galary_text !!}</h2>
                             </div>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                     <div class="col-xl-8 col-lg-8">
                         <div class="about-two__text-box">
                             <p class="about-two__text-box-text">
-                                {{ $aboutData->about_institute }}
+                                {!! $aboutData->about_institute !!}
                             </p>
                             <div class="about-two__text-box-btn">
                                 <a href="{{ route('frontend.courses.index') }}" class="thm-btn">view all courses</a>

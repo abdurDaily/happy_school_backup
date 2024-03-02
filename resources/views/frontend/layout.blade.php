@@ -61,7 +61,7 @@
                         <div class="main-header--one__top-right clearfix">
                             <ul class="main-header--one__top-social-link list-unstyled clearfix">
                                 <li><a href="index.html#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="index.html#"><i class="fab fa-facebook"></i></a></li>
+                                <li><a target="_blank" href="https://www.facebook.com/goeteiiuc"><i class="fab fa-facebook"></i></a></li>
                             </ul>
 
                             <div class="main-header--one__top-contact-info clearfix">
